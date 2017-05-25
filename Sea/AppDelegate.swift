@@ -13,9 +13,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var newsPresenter: NewsPresenter!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        newsPresenter = NewsPresenter()
+        newsPresenter.view = NewsViewController()
+        
+        window?.rootViewController = newsPresenter.view as! UIViewController
+
         return true
     }
 
