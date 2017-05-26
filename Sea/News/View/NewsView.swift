@@ -7,13 +7,12 @@ import RxSwift
 
 protocol NewsView {
     
-    var viewIsReady: Observable<Void> { get }
-    
+    /// Входы.
     func showLoadingState()
-    
     func showConnectionError(errorText: String)
-    
     func showNews(news: News, date: Date)
     
+    /// Выходы.
+    var viewIsReady: Observable<Void> { get }
     var loadButtonTaps: Observable<Void> { get }
 }

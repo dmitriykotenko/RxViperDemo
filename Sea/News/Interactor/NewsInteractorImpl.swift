@@ -7,13 +7,13 @@ import RxSwift
 
 class NewsInteractorImpl: NewsInteractor {
     
-    var api: NewsApi = NewsApiImpl()
-
     var loadingResultInternal: Variable<LoadingResult> = Variable(.error(text: "Loading has not started yet"))
-
+    
     var loadingResult: Observable<LoadingResult> {
         return loadingResultInternal.asObservable()
-    }    
+    }
+
+    var api: NewsApi = NewsApiImpl()
     
     func loadNews(date: Date) {
         api.news(date: date) { [weak self] (news, error) in

@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         newsPresenter = NewsPresenter()
         newsPresenter.view = NewsViewController()
         
-        window?.rootViewController = newsPresenter.view as! UIViewController
+        window?.rootViewController = newsPresenter.view as? UIViewController
 
         return true
     }
