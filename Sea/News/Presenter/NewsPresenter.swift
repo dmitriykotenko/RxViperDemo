@@ -28,9 +28,8 @@ class NewsPresenter {
     func connectEverything() {
 
         view?.loadButtonTaps
-            .subscribe(onNext: {
-                self.interactor.loadNews(date: Date())
-            })
+            .map { return Date() }
+            .bind(to: interactor.loadingRequest)
             .disposed(by: disposeBag)
 
         view!.loadButtonTaps
@@ -39,12 +38,12 @@ class NewsPresenter {
             .disposed(by: disposeBag)
 
         interactor.loadingResult
-            .map ( viewStateFromLoadingResult )
+            .map ( parseLoadingResult )
             .bind(to: view!.state)
             .disposed(by: disposeBag)
     }
         
-    private func viewStateFromLoadingResult(_ loadingResult: LoadingResult) -> NewsViewState {
+    private func parseLoadingResult(_ loadingResult: LoadingResult) -> NewsViewState {
         switch loadingResult {
         case let .success(news, date):
             return .success(news: news, date: date)

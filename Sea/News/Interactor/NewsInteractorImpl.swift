@@ -14,6 +14,20 @@ class NewsInteractorImpl: NewsInteractor {
     }
 
     var api: NewsApi = NewsApiImpl()
+    var loadingRequest: Variable<Date> = Variable(Date())
+    
+    private var disposeBag = DisposeBag()
+
+    init() {
+        setupBindings()
+    }
+    
+    private func setupBindings() {
+        loadingRequest.asObservable()
+            .skip(1)
+            .subscribe(onNext: loadNews)
+            .disposed(by: disposeBag)
+    }
     
     func loadNews(date: Date) {
         api.news(date: date) { [weak self] (news, error) in
