@@ -17,6 +17,10 @@ class NewsViewController: UIViewController, NewsView {
         return viewIsReadyInternal.asObservable()
     }
     
+    var state: Variable<NewsViewState> = Variable(.loading)
+    
+    private var disposeBag = DisposeBag()
+    
     override func loadView() {
         view = UIView()
         view.backgroundColor = .orange
@@ -44,9 +48,17 @@ class NewsViewController: UIViewController, NewsView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setupBindings()
         
         viewIsReadyInternal.on(.next())
         viewIsReadyInternal.on(.completed)
+    }
+    
+    func setupBindings() {
+        state.asDriver()
+            .drive(onNext: displayState )
+            .disposed(by: disposeBag)
     }
     
     func placeSubviews() {
@@ -59,6 +71,33 @@ class NewsViewController: UIViewController, NewsView {
         pinTopSubview(topSubview: newsLabel, toBottomSubview: reloadButton)
         pinSubviewToBottom(subview: reloadButton)
     }
+    
+    func displayState(_ state: NewsViewState) {
+        switch state {
+        case .loading:
+            dateLabel.text = "Загружаем новости..."
+            newsLabel.alpha = 0.25
+            reloadButton.isEnabled = false
+        case let .success(news, date):
+            dateLabel.text = date.description
+            newsLabel.alpha = 1
+            newsLabel.text = news.joined(separator: "\n")
+            reloadButton.isEnabled = true
+        case let .error(errorText):
+            dateLabel.text = errorText
+            newsLabel.alpha = 1
+            newsLabel.text = nil
+            reloadButton.isEnabled = true
+        }
+    }
+    
+    var loadButtonTaps: Observable<Void> {
+        return reloadButton.rx.tap.asObservable()
+    }
+}
+
+
+extension UIViewController {
     
     func alignSubviewHorizontally(subview: UIView) {
         let constraints = NSLayoutConstraint.constraints(
@@ -98,37 +137,5 @@ class NewsViewController: UIViewController, NewsView {
             views: ["top": topSubview, "bottom": bottomSubview])
         
         view.addConstraints(constraints)
-    }
-    
-    func setState(_ state: NewsViewState) {
-        switch state {
-        case .loading: showLoadingState()
-        case let .success(news, date): showNews(news: news, date: date)
-        case let .error(errorText): showConnectionError(errorText: errorText)
-        }
-    }
-    
-    private func showLoadingState() {
-        dateLabel.text = "Загружаем новости..."
-        newsLabel.alpha = 0.25
-        reloadButton.isEnabled = false
-    }
-    
-    private func showConnectionError(errorText: String) {
-        dateLabel.text = errorText
-        newsLabel.alpha = 1
-        newsLabel.text = nil
-        reloadButton.isEnabled = true
-    }
-    
-    private func showNews(news: News, date: Date) {
-        dateLabel.text = date.description
-        newsLabel.alpha = 1
-        newsLabel.text = news.joined(separator: "\n")
-        reloadButton.isEnabled = true
-    }
-    
-    var loadButtonTaps: Observable<Void> {
-        return reloadButton.rx.tap.asObservable()
     }
 }

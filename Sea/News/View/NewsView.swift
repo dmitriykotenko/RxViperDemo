@@ -15,7 +15,7 @@ enum NewsViewState {
 protocol NewsView {
     
     /// Входы.
-    func setState(_ state: NewsViewState)
+    var state: Variable<NewsViewState> { get }
     
     /// Выходы.
     var viewIsReady: Observable<Void> { get }

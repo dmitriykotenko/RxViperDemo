@@ -26,22 +26,30 @@ class NewsPresenter {
     }
     
     func connectEverything() {
-        interactor.loadingResult
-            .subscribe(onNext: { loadingResult in
-                switch loadingResult {
-                case let .success(news, date):
-                    self.view?.setState(.success(news: news, date: date))
-                case let .error(errorText):
-                    self.view?.setState(.error(errorText: errorText))
-                }
-            })
-            .disposed(by: disposeBag)
 
         view?.loadButtonTaps
             .subscribe(onNext: {
-                self.view?.setState(.loading)
                 self.interactor.loadNews(date: Date())
             })
             .disposed(by: disposeBag)
+
+        view!.loadButtonTaps
+            .map { return .loading }
+            .bind(to: view!.state)
+            .disposed(by: disposeBag)
+
+        interactor.loadingResult
+            .map ( viewStateFromLoadingResult )
+            .bind(to: view!.state)
+            .disposed(by: disposeBag)
+    }
+        
+    private func viewStateFromLoadingResult(_ loadingResult: LoadingResult) -> NewsViewState {
+        switch loadingResult {
+        case let .success(news, date):
+            return .success(news: news, date: date)
+        case let .error(errorText):
+            return .error(errorText: errorText)
+        }
     }
 }
