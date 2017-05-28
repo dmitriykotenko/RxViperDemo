@@ -14,7 +14,7 @@ enum LoadingResult {
 protocol NewsInteractor {
     
     // Входы.
-    var loadingRequest: Variable<Date> { get }
+    var loadingRequest: PublishSubject<Date> { get }
     
     // Выходы.
     var loadingResult: Observable<LoadingResult> { get }

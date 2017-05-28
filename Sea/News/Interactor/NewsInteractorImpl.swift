@@ -14,7 +14,7 @@ class NewsInteractorImpl: NewsInteractor {
     }
 
     var api: NewsApi = NewsApiImpl()
-    var loadingRequest: Variable<Date> = Variable(Date())
+    var loadingRequest: PublishSubject<Date> = PublishSubject()
     
     private var disposeBag = DisposeBag()
 
@@ -23,8 +23,7 @@ class NewsInteractorImpl: NewsInteractor {
     }
     
     private func setupBindings() {
-        loadingRequest.asObservable()
-            .skip(1)
+        loadingRequest
             .subscribe(onNext: loadNews)
             .disposed(by: disposeBag)
     }
