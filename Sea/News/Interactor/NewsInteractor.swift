@@ -6,9 +6,7 @@ import RxSwift
 
 
 enum LoadingResult {
-    
     case success(news: News, date: Date)
-    
     case error(text: String)
 }
 

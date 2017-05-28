@@ -46,6 +46,7 @@ class NewsViewController: UIViewController, NewsView {
         super.viewDidLoad()
         
         viewIsReadyInternal.on(.next())
+        viewIsReadyInternal.on(.completed)
     }
     
     func placeSubviews() {
@@ -99,20 +100,28 @@ class NewsViewController: UIViewController, NewsView {
         view.addConstraints(constraints)
     }
     
-    func showLoadingState() {
+    func setState(_ state: NewsViewState) {
+        switch state {
+        case .loading: showLoadingState()
+        case let .success(news, date): showNews(news: news, date: date)
+        case let .error(errorText): showConnectionError(errorText: errorText)
+        }
+    }
+    
+    private func showLoadingState() {
         dateLabel.text = "Загружаем новости..."
         newsLabel.alpha = 0.25
         reloadButton.isEnabled = false
     }
     
-    func showConnectionError(errorText: String) {
+    private func showConnectionError(errorText: String) {
         dateLabel.text = errorText
         newsLabel.alpha = 1
         newsLabel.text = nil
         reloadButton.isEnabled = true
     }
     
-    func showNews(news: News, date: Date) {
+    private func showNews(news: News, date: Date) {
         dateLabel.text = date.description
         newsLabel.alpha = 1
         newsLabel.text = news.joined(separator: "\n")

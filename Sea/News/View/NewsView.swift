@@ -5,12 +5,17 @@
 import RxSwift
 
 
+enum NewsViewState {
+    case loading
+    case success(news: News, date: Date)
+    case error(errorText: String)
+}
+
+
 protocol NewsView {
     
     /// Входы.
-    func showLoadingState()
-    func showConnectionError(errorText: String)
-    func showNews(news: News, date: Date)
+    func setState(_ state: NewsViewState)
     
     /// Выходы.
     var viewIsReady: Observable<Void> { get }

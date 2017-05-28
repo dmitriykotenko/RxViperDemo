@@ -13,30 +13,34 @@ class NewsPresenter {
 
     var view: NewsView? {
         didSet {
-            view?.viewIsReady
-                .subscribe(onNext: { [weak self] in
-                    self?.configureModule()
-                })
-                .disposed(by: disposeBag)
+            configureModule()
         }
     }
     
     func configureModule() {
-        view?.loadButtonTaps
-            .subscribe(onNext: {
-                self.view?.showLoadingState()
-                self.interactor.loadNews(date: Date())
+        view?.viewIsReady
+            .subscribe(onNext: { [weak self] in
+                self?.connectEverything()
             })
             .disposed(by: disposeBag)
-        
+    }
+    
+    func connectEverything() {
         interactor.loadingResult
             .subscribe(onNext: { loadingResult in
                 switch loadingResult {
                 case let .success(news, date):
-                    self.view?.showNews(news: news, date: date)
+                    self.view?.setState(.success(news: news, date: date))
                 case let .error(errorText):
-                    self.view?.showConnectionError(errorText: errorText)
+                    self.view?.setState(.error(errorText: errorText))
                 }
+            })
+            .disposed(by: disposeBag)
+
+        view?.loadButtonTaps
+            .subscribe(onNext: {
+                self.view?.setState(.loading)
+                self.interactor.loadNews(date: Date())
             })
             .disposed(by: disposeBag)
     }
