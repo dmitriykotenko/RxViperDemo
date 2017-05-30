@@ -17,10 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        newsPresenter = NewsPresenter()
-        newsPresenter.view = NewsViewController()
-        
-        window?.rootViewController = newsPresenter.view as? UIViewController
+        if let newsViewController = UIStoryboard(name: "News", bundle: Bundle.main).instantiateInitialViewController() as? NewsViewController {
+            newsPresenter = NewsPresenter()
+            newsPresenter.view = newsViewController
+            window?.rootViewController = newsPresenter.view as? UIViewController
+        }
 
         return true
     }

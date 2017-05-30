@@ -16,15 +16,22 @@ class TopicPresenter: TopicModule {
     func configureModule(topic: String) {
         self.currentTopic.value = topic
         
-        
+        view.viewIsReady.subscribe(onNext: { [weak self] in
+            self?.connectEverything()
+        })
+        .disposed(by: disposeBag)
     }
     
     func connectEverything() {
+        currentTopic.asObservable().take(1)
+            .bind(to: view.initialTopic)
+            .disposed(by: disposeBag)
+        
         view.topic
             .bind(to: currentTopic)
             .disposed(by: disposeBag)
         
-        view.selectButtonTaps
+        view.okButtonTaps
             .map { return self.currentTopic.value }
             .bind(to: topicSelectedInternal)
             .disposed(by: disposeBag)

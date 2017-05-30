@@ -7,10 +7,10 @@ import RxSwift
 
 class NewsInteractorImpl: NewsInteractor {
     
-    var loadingResultInternal: Variable<LoadingResult> = Variable(.error(text: "Loading has not started yet"))
+    var loadingResultSubject: PublishSubject<LoadingResult> = PublishSubject()
     
     var loadingResult: Observable<LoadingResult> {
-        return loadingResultInternal.asObservable()
+        return loadingResultSubject.asObservable()
     }
 
     var api: NewsApi = NewsApiImpl()
@@ -31,10 +31,10 @@ class NewsInteractorImpl: NewsInteractor {
     func loadNews(date: Date) {
         api.news(date: date) { [weak self] (news, error) in
             if let news = news {
-                self?.loadingResultInternal.value = .success(news: news, date: date)
+                self?.loadingResultSubject.onNext(.success(news: news, date: date))
             } else {
-                let errorText = error ?? "Unknown error"
-                self?.loadingResultInternal.value = .error(text: errorText)
+                let errorText = error ?? "Неизвестная ошибка"
+                self?.loadingResultSubject.onNext(.error(text: errorText))
             }
         }
     }

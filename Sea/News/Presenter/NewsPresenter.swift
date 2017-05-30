@@ -21,12 +21,12 @@ class NewsPresenter {
         view?.viewIsReady
             .subscribe(onNext: { [weak self] in
                 self?.connectEverything()
+                self?.interactor.loadingRequest.onNext(Date())
             })
             .disposed(by: disposeBag)
     }
     
     func connectEverything() {
-
         view?.loadButtonTaps
             .map { return Date() }
             .bind(to: interactor.loadingRequest)

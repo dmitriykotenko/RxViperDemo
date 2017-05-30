@@ -8,51 +8,34 @@ import RxCocoa
 
 class NewsViewController: UIViewController, NewsView {
     
-    var dateLabel: UILabel!
-    var newsLabel: UILabel!
-    var reloadButton: UIButton!
+    @IBOutlet
+    private var titleLabel: UILabel!
     
-    var viewIsReadyInternal = PublishSubject<Void>()
+    @IBOutlet
+    private var dateButton: UIButton!
+
+    @IBOutlet
+    private var newsLabel: UILabel!
+
+    @IBOutlet
+    private var reloadButton: UIButton!
+    
+    var viewIsReadySubject = PublishSubject<Void>()
     var viewIsReady: Observable<Void> {
-        return viewIsReadyInternal.asObservable()
+        return viewIsReadySubject.asObservable()
     }
     
     var state: Variable<NewsViewState> = Variable(.loading)
     
     private var disposeBag = DisposeBag()
     
-    override func loadView() {
-        view = UIView()
-        view.backgroundColor = .orange
-        
-        dateLabel = UILabel()
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.font = UIFont.boldSystemFont(ofSize: 28)
-        view.addSubview(dateLabel)
-        
-        newsLabel = UILabel()
-        newsLabel.translatesAutoresizingMaskIntoConstraints = false
-        newsLabel.numberOfLines = 0
-        newsLabel.lineBreakMode = .byWordWrapping
-        view.addSubview(newsLabel)
-        
-        reloadButton = UIButton()
-        reloadButton.translatesAutoresizingMaskIntoConstraints = false
-        reloadButton.layer.cornerRadius = 12
-        reloadButton.backgroundColor = .cyan
-        reloadButton.setTitle("Загрузить новые новости", for: UIControlState.normal)
-        view.addSubview(reloadButton)
-        
-        placeSubviews()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupBindings()
         
-        viewIsReadyInternal.on(.next())
-        viewIsReadyInternal.on(.completed)
+        viewIsReadySubject.on(.next())
+        viewIsReadySubject.on(.completed)
     }
     
     func setupBindings() {
@@ -61,81 +44,42 @@ class NewsViewController: UIViewController, NewsView {
             .disposed(by: disposeBag)
     }
     
-    func placeSubviews() {
-        alignSubviewHorizontally(subview: dateLabel)
-        alignSubviewHorizontally(subview: newsLabel)
-        alignSubviewHorizontally(subview: reloadButton)
-        
-        pinSubviewToTop(subview: dateLabel)
-        pinTopSubview(topSubview: dateLabel, toBottomSubview: newsLabel)
-        pinTopSubview(topSubview: newsLabel, toBottomSubview: reloadButton)
-        pinSubviewToBottom(subview: reloadButton)
-    }
-    
     func displayState(_ state: NewsViewState) {
         switch state {
         case .loading:
-            dateLabel.text = "Загружаем новости..."
+            titleLabel.text = "Загружаем новости..."
+            dateButton.isHidden = true
             newsLabel.alpha = 0.25
+            reloadButton.isHidden = true
             reloadButton.isEnabled = false
         case let .success(news, date):
-            dateLabel.text = date.description
+            titleLabel.text = "Новости за "
+            dateButton.isHidden = false
+            dateButton.setTitle(formatDate(date), for: UIControlState.normal)
             newsLabel.alpha = 1
             newsLabel.text = news.joined(separator: "\n")
+            reloadButton.isHidden = false
             reloadButton.isEnabled = true
         case let .error(errorText):
-            dateLabel.text = errorText
+            titleLabel.text = errorText
+            dateButton.isHidden = true
             newsLabel.alpha = 1
             newsLabel.text = nil
+            reloadButton.isHidden = false
             reloadButton.isEnabled = true
         }
     }
     
+    private func formatDate(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMMM"
+        dateFormatter.locale = Locale(identifier: "ru-RU")
+        
+        return dateFormatter.string(from: date)
+    }
+    
     var loadButtonTaps: Observable<Void> {
         return reloadButton.rx.tap.asObservable()
-    }
-}
-
-
-extension UIViewController {
-    
-    func alignSubviewHorizontally(subview: UIView) {
-        let constraints = NSLayoutConstraint.constraints(
-            withVisualFormat: "|-20-[subview]-20-|",
-            options: [],
-            metrics: nil,
-            views: ["subview": subview])
-        
-        view.addConstraints(constraints)
-    }
-    
-    func pinSubviewToTop(subview: UIView) {
-        let constraints = NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-20-[subview]",
-            options: [],
-            metrics: nil,
-            views: ["subview": subview])
-        
-        view.addConstraints(constraints)
-    }
-    
-    func pinSubviewToBottom(subview: UIView) {
-        let constraints = NSLayoutConstraint.constraints(
-            withVisualFormat: "V:[subview]-20-|",
-            options: [],
-            metrics: nil,
-            views: ["subview": subview])
-        
-        view.addConstraints(constraints)
-    }
-    
-    func pinTopSubview(topSubview: UIView, toBottomSubview bottomSubview: UIView) {
-        let constraints = NSLayoutConstraint.constraints(
-            withVisualFormat: "V:[top]-20-[bottom]",
-            options: [],
-            metrics: nil,
-            views: ["top": topSubview, "bottom": bottomSubview])
-        
-        view.addConstraints(constraints)
+            .debug("Reload News button pressed.")
     }
 }
