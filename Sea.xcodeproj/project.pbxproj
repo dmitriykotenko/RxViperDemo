@@ -28,6 +28,8 @@
 		C2E29D911EDDD5DA003A993A /* Date.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E29D8A1EDDD5DA003A993A /* Date.storyboard */; };
 		C2E29D921EDDD5DA003A993A /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E29D8B1EDDD5DA003A993A /* DateView.swift */; };
 		C2E29D931EDDD5DA003A993A /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E29D8C1EDDD5DA003A993A /* DateViewController.swift */; };
+		C2E29D951EDDD64D003A993A /* NewsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E29D941EDDD64D003A993A /* NewsRouter.swift */; };
+		C2E29D971EDDD658003A993A /* NewsRouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E29D961EDDD658003A993A /* NewsRouterImpl.swift */; };
 		E4666AE7C68164ACFB61258E /* Pods_Sea.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C504D3414CD5078C48F1B58 /* Pods_Sea.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +72,8 @@
 		C2E29D8A1EDDD5DA003A993A /* Date.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Date.storyboard; sourceTree = "<group>"; };
 		C2E29D8B1EDDD5DA003A993A /* DateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		C2E29D8C1EDDD5DA003A993A /* DateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
+		C2E29D941EDDD64D003A993A /* NewsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsRouter.swift; path = Sea/NewsRouter.swift; sourceTree = SOURCE_ROOT; };
+		C2E29D961EDDD658003A993A /* NewsRouterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsRouterImpl.swift; path = Sea/NewsRouterImpl.swift; sourceTree = SOURCE_ROOT; };
 		CF014DDDEB143E999C97F282 /* Pods-Sea.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sea.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sea/Pods-Sea.release.xcconfig"; sourceTree = "<group>"; };
 		F42216C014761ECEBE897224 /* Pods-SeaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SeaTests/Pods-SeaTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -189,6 +193,8 @@
 		C2D62A341ED5D8FE0084E846 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				C2E29D941EDDD64D003A993A /* NewsRouter.swift */,
+				C2E29D961EDDD658003A993A /* NewsRouterImpl.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -461,7 +467,9 @@
 				C2D62A381ED5D9CE0084E846 /* NewsView.swift in Sources */,
 				C2146EBE1ED5ABC1007A613B /* AppDelegate.swift in Sources */,
 				C2D62A361ED5D9400084E846 /* NewsInteractor.swift in Sources */,
+				C2E29D951EDDD64D003A993A /* NewsRouter.swift in Sources */,
 				C2D62A401ED5DECB0084E846 /* NewsViewController.swift in Sources */,
+				C2E29D971EDDD658003A993A /* NewsRouterImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

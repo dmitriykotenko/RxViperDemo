@@ -9,12 +9,12 @@ class DatePresenter: DateModule {
 
     var view: DateView!
     
-    var currentDate: Variable<String> = Variable("")
+    var currentDate: Variable<Date> = Variable(Date())
     
     private var disposeBag = DisposeBag()
     
-    func configureModule(topic: String) {
-        self.currentDate.value = topic
+    func configureModule(date: Date) {
+        self.currentDate.value = date
         
         view.viewIsReady.subscribe(onNext: { [weak self] in
             self?.connectEverything()
@@ -27,18 +27,18 @@ class DatePresenter: DateModule {
             .bind(to: view.initialDate)
             .disposed(by: disposeBag)
         
-        view.topic
+        view.date
             .bind(to: currentDate)
             .disposed(by: disposeBag)
         
         view.okButtonTaps
             .map { return self.currentDate.value }
-            .bind(to: topicSelectedInternal)
+            .bind(to: dateSelectedSubject)
             .disposed(by: disposeBag)
     }
     
-    var topicSelectedInternal = PublishSubject<String>()
-    var topicSelected: Observable<String> {
-        return topicSelectedInternal
+    var dateSelectedSubject = PublishSubject<Date>()
+    var dateSelected: Observable<Date> {
+        return dateSelectedSubject.asObservable()
     }
 }

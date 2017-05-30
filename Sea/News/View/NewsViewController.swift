@@ -50,23 +50,23 @@ class NewsViewController: UIViewController, NewsView {
             titleLabel.text = "Загружаем новости..."
             dateButton.isHidden = true
             newsLabel.alpha = 0.25
-            reloadButton.isHidden = true
             reloadButton.isEnabled = false
+            reloadButton.isHidden = true
         case let .success(news, date):
             titleLabel.text = "Новости за "
-            dateButton.isHidden = false
             dateButton.setTitle(formatDate(date), for: UIControlState.normal)
+            dateButton.isHidden = false
             newsLabel.alpha = 1
             newsLabel.text = news.joined(separator: "\n")
-            reloadButton.isHidden = false
             reloadButton.isEnabled = true
+            reloadButton.isHidden = false
         case let .error(errorText):
             titleLabel.text = errorText
             dateButton.isHidden = true
             newsLabel.alpha = 1
             newsLabel.text = nil
-            reloadButton.isHidden = false
             reloadButton.isEnabled = true
+            reloadButton.isHidden = false
         }
     }
     

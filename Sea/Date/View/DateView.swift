@@ -8,10 +8,10 @@ import RxSwift
 protocol DateView {
     
     // Входы.
-    var initialDate: Variable<String> { get }
+    var initialDate: Variable<Date> { get }
     
     // Выходы.
     var viewIsReady: PublishSubject<Void> { get }
-    var topic: Observable<String> { get }
+    var date: Observable<Date> { get }
     var okButtonTaps: Observable<Void> { get }
 }

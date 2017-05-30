@@ -7,7 +7,7 @@ import RxSwift
 
 protocol DateModule {
 
-    func configureModule(topic: String)
+    func configureModule(date: Date)
     
-    var topicSelected: Observable<String> { get }
+    var dateSelected: Observable<Date> { get }
 }

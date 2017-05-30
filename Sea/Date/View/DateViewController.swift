@@ -8,10 +8,13 @@ import RxSwift
 
 class DateViewController: UIViewController, DateView {
     
-    @IBOutlet var topicField: UITextField!
-    @IBOutlet var okButton: UIButton!
+    @IBOutlet
+    private var datePicker: UIDatePicker!
 
-    var initialDate: Variable<String> = Variable("")
+    @IBOutlet
+    private var okButton: UIButton!
+
+    var initialDate: Variable<Date> = Variable(Date())
     var viewIsReady: PublishSubject<Void> = PublishSubject()
     
     private var disposeBag = DisposeBag()
@@ -20,17 +23,23 @@ class DateViewController: UIViewController, DateView {
         super.viewDidLoad()
         
         viewIsReady.on(.next())
+        
+        okButtonTaps
+            .subscribe(onNext: { [unowned self] in
+                self.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func setupBindings() {
         initialDate.asObservable()
             .skip(1)
-            .bind(to: topicField.rx.text)
+            .bind(to: datePicker.rx.date)
             .disposed(by: disposeBag)
     }
     
-    var topic: Observable<String> {
-        return topicField.rx.text.map { $0 ?? "" }.asObservable()
+    var date: Observable<Date> {
+        return datePicker.rx.date.asObservable()
     }
     
     var okButtonTaps: Observable<Void> {

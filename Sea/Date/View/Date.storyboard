@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="j3V-Xs-C0E">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,34 +21,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Тема для новостей:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LG-lo-etx">
-                                <rect key="frame" x="16" y="20" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Дата новостей:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LG-lo-etx">
+                                <rect key="frame" x="16" y="50" width="186" height="31.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Название темы" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4hA-sX-rml">
-                                <rect key="frame" x="16" y="49" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RlL-EH-A8W">
-                                <rect key="frame" x="16" y="102" width="343" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.12549019610000001" green="0.61568627450000002" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="X40-ed-wbp">
+                                <rect key="frame" x="0.0" y="95.5" width="375" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="517856103.62284201">
+                                    <!--2017-05-30 16:55:03 +0000-->
+                                </date>
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="504961200">
+                                    <!--2017-01-01 11:00:00 +0000-->
+                                </date>
+                                <date key="maximumDate" timeIntervalSinceReferenceDate="536410800">
+                                    <!--2017-12-31 11:00:00 +0000-->
+                                </date>
+                                <locale key="locale" localeIdentifier="ru"/>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RlL-EH-A8W">
+                                <rect key="frame" x="16" y="321.5" width="186" height="41"/>
+                                <color key="backgroundColor" red="1" green="0.98039215690000003" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="10" maxX="20" maxY="10"/>
                                 <state key="normal" title="OK">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8LG-lo-etx" firstAttribute="leading" secondItem="RsC-ff-g35" secondAttribute="leading" constant="16" id="3hD-Bt-38k"/>
+                            <constraint firstItem="X40-ed-wbp" firstAttribute="top" secondItem="8LG-lo-etx" secondAttribute="bottom" constant="14" id="9bN-Qn-zxy"/>
+                            <constraint firstItem="RlL-EH-A8W" firstAttribute="trailing" secondItem="8LG-lo-etx" secondAttribute="trailing" id="Cif-D5-dln"/>
+                            <constraint firstItem="8LG-lo-etx" firstAttribute="top" secondItem="yVG-oR-4cd" secondAttribute="bottom" constant="30" id="GGW-4Q-6Di"/>
+                            <constraint firstItem="RlL-EH-A8W" firstAttribute="leading" secondItem="8LG-lo-etx" secondAttribute="leading" id="HLh-bT-0pI"/>
+                            <constraint firstItem="X40-ed-wbp" firstAttribute="centerX" secondItem="RsC-ff-g35" secondAttribute="centerX" id="JaP-qC-QHn"/>
+                            <constraint firstItem="X40-ed-wbp" firstAttribute="leading" secondItem="RsC-ff-g35" secondAttribute="leading" id="r17-zQ-hek"/>
+                            <constraint firstItem="RlL-EH-A8W" firstAttribute="top" secondItem="X40-ed-wbp" secondAttribute="bottom" constant="10" id="y8h-iJ-bsv"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="datePicker" destination="X40-ed-wbp" id="twZ-BT-oGC"/>
                         <outlet property="okButton" destination="RlL-EH-A8W" id="ekt-oN-xSP"/>
-                        <outlet property="topicField" destination="4hA-sX-rml" id="sAy-vL-UTl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KXt-Ze-47h" userLabel="First Responder" sceneMemberID="firstResponder"/>
