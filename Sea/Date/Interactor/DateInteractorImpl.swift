@@ -3,6 +3,6 @@
 //
 
 
-class TopicInteractorImpl: TopicInteractor {
+class DateInteractorImpl: DateInteractor {
     
 }

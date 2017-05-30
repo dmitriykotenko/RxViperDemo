@@ -5,7 +5,7 @@
 import RxSwift
 
 
-protocol TopicModule {
+protocol DateModule {
 
     func configureModule(topic: String)
     

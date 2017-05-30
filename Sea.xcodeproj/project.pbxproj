@@ -8,19 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		16FB8E6A7F5A37C888E25E8B /* Pods_SeaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B6C5818E77A54D4B5F001 /* Pods_SeaTests.framework */; };
-		5BDAA2D61EDAE362005A7948 /* TopicInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAA2D51EDAE362005A7948 /* TopicInteractor.swift */; };
-		5BDAA2D81EDAE379005A7948 /* TopicInteractorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAA2D71EDAE379005A7948 /* TopicInteractorImpl.swift */; };
-		5BDAA2DA1EDAE38E005A7948 /* TopicPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAA2D91EDAE38E005A7948 /* TopicPresenter.swift */; };
-		5BDAA2DC1EDAE3A0005A7948 /* TopicModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAA2DB1EDAE3A0005A7948 /* TopicModule.swift */; };
-		5BDAA2DE1EDAE4E8005A7948 /* TopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAA2DD1EDAE4E8005A7948 /* TopicView.swift */; };
-		5BDAA2E01EDAE4EF005A7948 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDAA2DF1EDAE4EF005A7948 /* TopicViewController.swift */; };
 		C2146EBE1ED5ABC1007A613B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2146EBD1ED5ABC1007A613B /* AppDelegate.swift */; };
 		C2146EC01ED5ABC1007A613B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2146EBF1ED5ABC1007A613B /* ViewController.swift */; };
 		C2146EC31ED5ABC1007A613B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2146EC11ED5ABC1007A613B /* Main.storyboard */; };
 		C2146EC51ED5ABC1007A613B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2146EC41ED5ABC1007A613B /* Assets.xcassets */; };
 		C2146EC81ED5ABC1007A613B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2146EC61ED5ABC1007A613B /* LaunchScreen.storyboard */; };
 		C2146ED31ED5ABC1007A613B /* SeaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2146ED21ED5ABC1007A613B /* SeaTests.swift */; };
-		C28B281F1EDC7AB800A98EE0 /* Topic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C28B281E1EDC7AB800A98EE0 /* Topic.storyboard */; };
 		C2D62A361ED5D9400084E846 /* NewsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D62A351ED5D9400084E846 /* NewsInteractor.swift */; };
 		C2D62A381ED5D9CE0084E846 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D62A371ED5D9CE0084E846 /* NewsView.swift */; };
 		C2D62A3A1ED5DA510084E846 /* NewsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D62A391ED5DA510084E846 /* NewsApi.swift */; };
@@ -28,6 +21,13 @@
 		C2D62A3E1ED5DE8F0084E846 /* NewsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D62A3D1ED5DE8F0084E846 /* NewsPresenter.swift */; };
 		C2D62A401ED5DECB0084E846 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D62A3F1ED5DECB0084E846 /* NewsViewController.swift */; };
 		C2E29D7D1EDDC893003A993A /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E29D7C1EDDC893003A993A /* News.storyboard */; };
+		C2E29D8D1EDDD5DA003A993A /* DateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E29D841EDDD5DA003A993A /* DateInteractor.swift */; };
+		C2E29D8E1EDDD5DA003A993A /* DateInteractorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E29D851EDDD5DA003A993A /* DateInteractorImpl.swift */; };
+		C2E29D8F1EDDD5DA003A993A /* DateModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E29D871EDDD5DA003A993A /* DateModule.swift */; };
+		C2E29D901EDDD5DA003A993A /* DatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E29D881EDDD5DA003A993A /* DatePresenter.swift */; };
+		C2E29D911EDDD5DA003A993A /* Date.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E29D8A1EDDD5DA003A993A /* Date.storyboard */; };
+		C2E29D921EDDD5DA003A993A /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E29D8B1EDDD5DA003A993A /* DateView.swift */; };
+		C2E29D931EDDD5DA003A993A /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E29D8C1EDDD5DA003A993A /* DateViewController.swift */; };
 		E4666AE7C68164ACFB61258E /* Pods_Sea.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C504D3414CD5078C48F1B58 /* Pods_Sea.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,12 +43,6 @@
 
 /* Begin PBXFileReference section */
 		191E3F37182B01CBD4CCCCC7 /* Pods-SeaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SeaTests/Pods-SeaTests.release.xcconfig"; sourceTree = "<group>"; };
-		5BDAA2D51EDAE362005A7948 /* TopicInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicInteractor.swift; sourceTree = "<group>"; };
-		5BDAA2D71EDAE379005A7948 /* TopicInteractorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicInteractorImpl.swift; sourceTree = "<group>"; };
-		5BDAA2D91EDAE38E005A7948 /* TopicPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicPresenter.swift; sourceTree = "<group>"; };
-		5BDAA2DB1EDAE3A0005A7948 /* TopicModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicModule.swift; sourceTree = "<group>"; };
-		5BDAA2DD1EDAE4E8005A7948 /* TopicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicView.swift; sourceTree = "<group>"; };
-		5BDAA2DF1EDAE4EF005A7948 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
 		6C504D3414CD5078C48F1B58 /* Pods_Sea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3EE6775FAF7A452ECD8CF4 /* Pods-Sea.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sea.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sea/Pods-Sea.debug.xcconfig"; sourceTree = "<group>"; };
 		BC6B6C5818E77A54D4B5F001 /* Pods_SeaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,7 +56,6 @@
 		C2146ECE1ED5ABC1007A613B /* SeaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2146ED21ED5ABC1007A613B /* SeaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaTests.swift; sourceTree = "<group>"; };
 		C2146ED41ED5ABC1007A613B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C28B281E1EDC7AB800A98EE0 /* Topic.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Topic.storyboard; sourceTree = "<group>"; };
 		C2D62A351ED5D9400084E846 /* NewsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsInteractor.swift; sourceTree = "<group>"; };
 		C2D62A371ED5D9CE0084E846 /* NewsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		C2D62A391ED5DA510084E846 /* NewsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsApi.swift; sourceTree = "<group>"; };
@@ -70,6 +63,13 @@
 		C2D62A3D1ED5DE8F0084E846 /* NewsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsPresenter.swift; sourceTree = "<group>"; };
 		C2D62A3F1ED5DECB0084E846 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		C2E29D7C1EDDC893003A993A /* News.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
+		C2E29D841EDDD5DA003A993A /* DateInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateInteractor.swift; sourceTree = "<group>"; };
+		C2E29D851EDDD5DA003A993A /* DateInteractorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateInteractorImpl.swift; sourceTree = "<group>"; };
+		C2E29D871EDDD5DA003A993A /* DateModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateModule.swift; sourceTree = "<group>"; };
+		C2E29D881EDDD5DA003A993A /* DatePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePresenter.swift; sourceTree = "<group>"; };
+		C2E29D8A1EDDD5DA003A993A /* Date.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Date.storyboard; sourceTree = "<group>"; };
+		C2E29D8B1EDDD5DA003A993A /* DateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
+		C2E29D8C1EDDD5DA003A993A /* DateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
 		CF014DDDEB143E999C97F282 /* Pods-Sea.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sea.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sea/Pods-Sea.release.xcconfig"; sourceTree = "<group>"; };
 		F42216C014761ECEBE897224 /* Pods-SeaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SeaTests/Pods-SeaTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,52 +94,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5BDAA2D01EDAE311005A7948 /* Topic */ = {
-			isa = PBXGroup;
-			children = (
-				5BDAA2D11EDAE324005A7948 /* Interactor */,
-				5BDAA2D21EDAE330005A7948 /* Presenter */,
-				5BDAA2D41EDAE34A005A7948 /* Router */,
-				5BDAA2D31EDAE340005A7948 /* View */,
-			);
-			path = Topic;
-			sourceTree = "<group>";
-		};
-		5BDAA2D11EDAE324005A7948 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-				5BDAA2D51EDAE362005A7948 /* TopicInteractor.swift */,
-				5BDAA2D71EDAE379005A7948 /* TopicInteractorImpl.swift */,
-			);
-			path = Interactor;
-			sourceTree = "<group>";
-		};
-		5BDAA2D21EDAE330005A7948 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				5BDAA2D91EDAE38E005A7948 /* TopicPresenter.swift */,
-				5BDAA2DB1EDAE3A0005A7948 /* TopicModule.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		5BDAA2D31EDAE340005A7948 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C28B281E1EDC7AB800A98EE0 /* Topic.storyboard */,
-				5BDAA2DD1EDAE4E8005A7948 /* TopicView.swift */,
-				5BDAA2DF1EDAE4EF005A7948 /* TopicViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		5BDAA2D41EDAE34A005A7948 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Router;
-			sourceTree = "<group>";
-		};
 		6D00B2BA0908A1A91463956E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,7 +126,7 @@
 		C2146EBC1ED5ABC1007A613B /* Sea */ = {
 			isa = PBXGroup;
 			children = (
-				5BDAA2D01EDAE311005A7948 /* Topic */,
+				C2E29D821EDDD5DA003A993A /* Date */,
 				C2D62A301ED5D8BA0084E846 /* News */,
 				C2146EBD1ED5ABC1007A613B /* AppDelegate.swift */,
 				C2D62A391ED5DA510084E846 /* NewsApi.swift */,
@@ -237,6 +191,44 @@
 			children = (
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		C2E29D821EDDD5DA003A993A /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				C2E29D831EDDD5DA003A993A /* Interactor */,
+				C2E29D861EDDD5DA003A993A /* Presenter */,
+				C2E29D891EDDD5DA003A993A /* View */,
+			);
+			path = Date;
+			sourceTree = "<group>";
+		};
+		C2E29D831EDDD5DA003A993A /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				C2E29D841EDDD5DA003A993A /* DateInteractor.swift */,
+				C2E29D851EDDD5DA003A993A /* DateInteractorImpl.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		C2E29D861EDDD5DA003A993A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				C2E29D871EDDD5DA003A993A /* DateModule.swift */,
+				C2E29D881EDDD5DA003A993A /* DatePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		C2E29D891EDDD5DA003A993A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C2E29D8A1EDDD5DA003A993A /* Date.storyboard */,
+				C2E29D8B1EDDD5DA003A993A /* DateView.swift */,
+				C2E29D8C1EDDD5DA003A993A /* DateViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		D47B4CD53B33D4F162EE188B /* Pods */ = {
@@ -344,7 +336,7 @@
 				C2146EC81ED5ABC1007A613B /* LaunchScreen.storyboard in Resources */,
 				C2146EC51ED5ABC1007A613B /* Assets.xcassets in Resources */,
 				C2E29D7D1EDDC893003A993A /* News.storyboard in Resources */,
-				C28B281F1EDC7AB800A98EE0 /* Topic.storyboard in Resources */,
+				C2E29D911EDDD5DA003A993A /* Date.storyboard in Resources */,
 				C2146EC31ED5ABC1007A613B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,20 +448,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BDAA2D81EDAE379005A7948 /* TopicInteractorImpl.swift in Sources */,
+				C2E29D931EDDD5DA003A993A /* DateViewController.swift in Sources */,
+				C2E29D921EDDD5DA003A993A /* DateView.swift in Sources */,
 				C2D62A3A1ED5DA510084E846 /* NewsApi.swift in Sources */,
 				C2D62A3C1ED5DB430084E846 /* NewsInteractorImpl.swift in Sources */,
+				C2E29D901EDDD5DA003A993A /* DatePresenter.swift in Sources */,
+				C2E29D8F1EDDD5DA003A993A /* DateModule.swift in Sources */,
+				C2E29D8E1EDDD5DA003A993A /* DateInteractorImpl.swift in Sources */,
+				C2E29D8D1EDDD5DA003A993A /* DateInteractor.swift in Sources */,
 				C2D62A3E1ED5DE8F0084E846 /* NewsPresenter.swift in Sources */,
-				5BDAA2DC1EDAE3A0005A7948 /* TopicModule.swift in Sources */,
 				C2146EC01ED5ABC1007A613B /* ViewController.swift in Sources */,
-				5BDAA2E01EDAE4EF005A7948 /* TopicViewController.swift in Sources */,
 				C2D62A381ED5D9CE0084E846 /* NewsView.swift in Sources */,
 				C2146EBE1ED5ABC1007A613B /* AppDelegate.swift in Sources */,
 				C2D62A361ED5D9400084E846 /* NewsInteractor.swift in Sources */,
-				5BDAA2DE1EDAE4E8005A7948 /* TopicView.swift in Sources */,
 				C2D62A401ED5DECB0084E846 /* NewsViewController.swift in Sources */,
-				5BDAA2DA1EDAE38E005A7948 /* TopicPresenter.swift in Sources */,
-				5BDAA2D61EDAE362005A7948 /* TopicInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

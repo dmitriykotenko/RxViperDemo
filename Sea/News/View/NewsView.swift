@@ -20,4 +20,5 @@ protocol NewsView {
     /// Выходы.
     var viewIsReady: Observable<Void> { get }
     var loadButtonTaps: Observable<Void> { get }
+    var selectDateButtonTaps: Observable<Void> { get }
 }

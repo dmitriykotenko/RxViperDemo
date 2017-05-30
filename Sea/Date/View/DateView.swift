@@ -5,10 +5,10 @@
 import RxSwift
 
 
-protocol TopicView {
+protocol DateView {
     
     // Входы.
-    var initialTopic: Variable<String> { get }
+    var initialDate: Variable<String> { get }
     
     // Выходы.
     var viewIsReady: PublishSubject<Void> { get }

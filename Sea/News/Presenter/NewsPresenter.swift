@@ -32,10 +32,13 @@ class NewsPresenter {
             .bind(to: interactor.loadingRequest)
             .disposed(by: disposeBag)
 
-        view!.loadButtonTaps
+        view?.loadButtonTaps
             .map { return .loading }
             .bind(to: view!.state)
             .disposed(by: disposeBag)
+        
+        view?.selectDateButtonTaps
+            .map
 
         interactor.loadingResult
             .map ( parseLoadingResult )

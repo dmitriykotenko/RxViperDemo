@@ -3,6 +3,6 @@
 //
 
 
-protocol TopicInteractor {
+protocol DateInteractor {
     
 }

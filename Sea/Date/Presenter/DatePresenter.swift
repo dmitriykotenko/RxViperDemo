@@ -5,16 +5,16 @@
 import RxSwift
 
 
-class TopicPresenter: TopicModule {
+class DatePresenter: DateModule {
 
-    var view: TopicView!
+    var view: DateView!
     
-    var currentTopic: Variable<String> = Variable("")
+    var currentDate: Variable<String> = Variable("")
     
     private var disposeBag = DisposeBag()
     
     func configureModule(topic: String) {
-        self.currentTopic.value = topic
+        self.currentDate.value = topic
         
         view.viewIsReady.subscribe(onNext: { [weak self] in
             self?.connectEverything()
@@ -23,16 +23,16 @@ class TopicPresenter: TopicModule {
     }
     
     func connectEverything() {
-        currentTopic.asObservable().take(1)
-            .bind(to: view.initialTopic)
+        currentDate.asObservable().take(1)
+            .bind(to: view.initialDate)
             .disposed(by: disposeBag)
         
         view.topic
-            .bind(to: currentTopic)
+            .bind(to: currentDate)
             .disposed(by: disposeBag)
         
         view.okButtonTaps
-            .map { return self.currentTopic.value }
+            .map { return self.currentDate.value }
             .bind(to: topicSelectedInternal)
             .disposed(by: disposeBag)
     }

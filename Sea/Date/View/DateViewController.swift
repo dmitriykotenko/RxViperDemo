@@ -6,12 +6,12 @@ import RxCocoa
 import RxSwift
 
 
-class TopicViewController: UIViewController, TopicView {
+class DateViewController: UIViewController, DateView {
     
     @IBOutlet var topicField: UITextField!
     @IBOutlet var okButton: UIButton!
 
-    var initialTopic: Variable<String> = Variable("")
+    var initialDate: Variable<String> = Variable("")
     var viewIsReady: PublishSubject<Void> = PublishSubject()
     
     private var disposeBag = DisposeBag()
@@ -23,7 +23,7 @@ class TopicViewController: UIViewController, TopicView {
     }
     
     private func setupBindings() {
-        initialTopic.asObservable()
+        initialDate.asObservable()
             .skip(1)
             .bind(to: topicField.rx.text)
             .disposed(by: disposeBag)

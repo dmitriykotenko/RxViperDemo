@@ -80,6 +80,9 @@ class NewsViewController: UIViewController, NewsView {
     
     var loadButtonTaps: Observable<Void> {
         return reloadButton.rx.tap.asObservable()
-            .debug("Reload News button pressed.")
+    }
+    
+    var selectDateButtonTaps: Observable<Void> {
+        return dateButton.rx.tap.asObservable()
     }
 }
