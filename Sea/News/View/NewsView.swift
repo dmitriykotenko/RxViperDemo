@@ -5,17 +5,11 @@
 import RxSwift
 
 
-enum NewsViewState {
-    case loading
-    case success(news: News, date: Date)
-    case error(errorText: String)
-}
-
-
 protocol NewsView {
     
     /// Входы.
-    var state: Variable<NewsViewState> { get }
+    var date: Variable<Date> { get }
+    var newsState: Variable<NewsState> { get }
     
     /// Выходы.
     var viewIsReady: Single<Void> { get }

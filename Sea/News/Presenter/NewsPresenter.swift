@@ -5,61 +5,76 @@
 import RxSwift
 
 
+enum NewsState {
+    case loading
+    case success(news: News, date: Date)
+    case error(errorText: String)
+}
+
+
 class NewsPresenter {
-    
-    private var disposeBag = DisposeBag()
-    private var dateModuleDisposeBag = DisposeBag()
     
     var interactor: NewsInteractor = NewsInteractorImpl()
     var router: NewsRouter = NewsRouterImpl()
-
-    private var currentDate = Date()
+    var view: NewsView!
     
-    var view: NewsView? {
-        didSet {
-            configureModule()
-        }
-    }
+    private var date: Variable<Date> = Variable(Date())
+    private var newsState: Variable<NewsState> = Variable(.loading)
+    
+    private var disposeBag = DisposeBag()
     
     func configureModule() {
-        view?.viewIsReady
+        view.viewIsReady
             .subscribe(onSuccess: { [weak self] in
                 self?.connectEverything()
-                self?.interactor.loadingRequest.onNext(Date())
             })
             .disposed(by: disposeBag)
     }
     
     func connectEverything() {
-        view?.loadButtonTaps
-            .map { return Date() }
-            .bind(to: interactor.loadingRequest)
+        date.asObservable()
+            .bind(to: view!.date)
             .disposed(by: disposeBag)
         
-        view?.selectDateButtonTaps
-            .map { self.currentDate }
-            .flatMap ( openDateModule )
+        newsState.asObservable()
+            .bind(to: view!.newsState)
+            .disposed(by: disposeBag)
+        
+        view.loadButtonTaps
+            .map { [unowned self] in self.date.value }
             .bind(to: interactor.loadingRequest)
             .disposed(by: disposeBag)
 
         interactor.loadingRequest
             .map { _ in return .loading }
-            .bind(to: view!.state)
+            .bind(to: newsState)
             .disposed(by: disposeBag)
         
         interactor.loadingResult
             .map ( parseLoadingResult )
-            .bind(to: view!.state)
+            .bind(to: newsState)
+            .disposed(by: disposeBag)
+
+        // Выбор даты.
+        view.selectDateButtonTaps
+            .flatMap ( openDateModule )
+            .bind(to: date)
+            .disposed(by: disposeBag)
+        
+        // Перезагружаем новости каждый раз, когда поменялась дата.
+        date.asObservable()
+            .distinctUntilChanged()
+            .bind(to: interactor.loadingRequest)
             .disposed(by: disposeBag)
     }
     
-    private func openDateModule(_ date: Date) -> Single<Date> {
-        let dateModule = router.openDateModule(currentDate: date)
+    private func openDateModule() -> Single<Date> {
+        let dateModule = router.openDateModule(currentDate: date.value)
         
         return dateModule.dateSelected
     }
     
-    private func parseLoadingResult(_ loadingResult: LoadingResult) -> NewsViewState {
+    private func parseLoadingResult(_ loadingResult: LoadingResult) -> NewsState {
         switch loadingResult {
         case let .success(news, date):
             return .success(news: news, date: date)

@@ -25,7 +25,8 @@ class NewsViewController: UIViewController, NewsView {
         return viewIsReadySubject.asSingle()
     }
     
-    var state: Variable<NewsViewState> = Variable(.loading)
+    var date: Variable<Date> = Variable(Date())
+    var newsState: Variable<NewsState> = Variable(.loading)
     
     private var disposeBag = DisposeBag()
     
@@ -39,12 +40,17 @@ class NewsViewController: UIViewController, NewsView {
     }
     
     func setupBindings() {
-        state.asDriver()
-            .drive(onNext: displayState )
+        date.asObservable()
+            .map { [unowned self] in self.formatDate($0) }
+            .bind(to: dateButton.rx.title())
+            .disposed(by: disposeBag)
+        
+        newsState.asDriver()
+            .drive(onNext: displayNewsState )
             .disposed(by: disposeBag)
     }
     
-    func displayState(_ state: NewsViewState) {
+    func displayNewsState(_ state: NewsState) {
         switch state {
         case .loading:
             titleLabel.text = "Загружаем новости..."
@@ -52,9 +58,8 @@ class NewsViewController: UIViewController, NewsView {
             newsLabel.alpha = 0.25
             reloadButton.isEnabled = false
             reloadButton.isHidden = true
-        case let .success(news, date):
+        case let .success(news, _):
             titleLabel.text = "Новости за "
-            dateButton.setTitle(formatDate(date), for: UIControlState.normal)
             dateButton.isHidden = false
             newsLabel.alpha = 1
             newsLabel.text = news.joined(separator: "\n")

@@ -10,12 +10,12 @@ class DatePresenter: DateModule {
     var view: DateView!
     var router: DateRouter! = DateRouterImpl()
     
-    var currentDate: Variable<Date> = Variable(Date())
+    var date: Variable<Date> = Variable(Date())
     
     private var disposeBag = DisposeBag()
     
     func configureModule(date: Date) {
-        self.currentDate.value = date
+        self.date.value = date
         
         view.viewIsReady.subscribe(onSuccess: { [weak self] in
             self?.connectEverything()
@@ -24,12 +24,10 @@ class DatePresenter: DateModule {
     }
     
     func connectEverything() {
-        currentDate.asObservable().take(1)
-            .bind(to: view.initialDate)
-            .disposed(by: disposeBag)
+        view.setupInitialState(date: date.value)
         
         view.date
-            .bind(to: currentDate)
+            .bind(to: date)
             .disposed(by: disposeBag)
         
         view.okButtonTaps
@@ -40,7 +38,7 @@ class DatePresenter: DateModule {
     }
     
     private func done() {
-        dateSelectedSubject.onNext(currentDate.value)
+        dateSelectedSubject.onNext(date.value)
         dateSelectedSubject.onCompleted()
         router.close()
     }

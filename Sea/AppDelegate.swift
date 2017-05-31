@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let newsViewController = UIStoryboard(name: "News", bundle: Bundle.main).instantiateInitialViewController() as? NewsViewController {
             newsPresenter = NewsPresenter()
             newsPresenter.view = newsViewController
+            newsPresenter.configureModule()
+            
             window?.rootViewController = newsPresenter.view as? UIViewController
         }
 

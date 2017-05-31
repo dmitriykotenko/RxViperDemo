@@ -8,7 +8,7 @@ import RxSwift
 protocol DateView {
     
     // Входы.
-    var initialDate: Variable<Date> { get }
+    func setupInitialState(date: Date)
     
     // Выходы.
     var viewIsReady: Single<Void> { get }
