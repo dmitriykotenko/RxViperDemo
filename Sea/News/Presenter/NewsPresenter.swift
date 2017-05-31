@@ -14,8 +14,8 @@ enum NewsState {
 
 class NewsPresenter {
     
-    var interactor: NewsInteractor = NewsInteractorImpl()
-    var router: NewsRouter = NewsRouterImpl()
+    var interactor: NewsInteractor! = NewsInteractorImpl()
+    var router: NewsRouter! = NewsRouterImpl()
     var view: NewsView!
     
     private var date: Variable<Date> = Variable(Date())
@@ -51,13 +51,15 @@ class NewsPresenter {
             .disposed(by: disposeBag)
         
         interactor.loadingResult
-            .map ( parseLoadingResult )
+            .map { [unowned self] in self.parseLoadingResult($0) }
             .bind(to: newsState)
             .disposed(by: disposeBag)
 
         // Выбор даты.
         view.selectDateButtonTaps
-            .flatMap ( openDateModule )
+            .flatMap { [unowned self] in
+                return self.openDateModule()
+            }
             .bind(to: date)
             .disposed(by: disposeBag)
         
