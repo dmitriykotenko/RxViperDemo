@@ -8,6 +8,7 @@ import RxSwift
 class DatePresenter: DateModule {
 
     var view: DateView!
+    var router: DateRouter! = DateRouterImpl()
     
     var currentDate: Variable<Date> = Variable(Date())
     
@@ -16,7 +17,7 @@ class DatePresenter: DateModule {
     func configureModule(date: Date) {
         self.currentDate.value = date
         
-        view.viewIsReady.subscribe(onNext: { [weak self] in
+        view.viewIsReady.subscribe(onSuccess: { [weak self] in
             self?.connectEverything()
         })
         .disposed(by: disposeBag)
@@ -32,13 +33,20 @@ class DatePresenter: DateModule {
             .disposed(by: disposeBag)
         
         view.okButtonTaps
-            .map { return self.currentDate.value }
-            .bind(to: dateSelectedSubject)
+            .subscribe( onNext: { _ in
+                self.done()
+            })
             .disposed(by: disposeBag)
     }
     
+    private func done() {
+        dateSelectedSubject.onNext(currentDate.value)
+        dateSelectedSubject.onCompleted()
+        router.close()
+    }
+    
     var dateSelectedSubject = PublishSubject<Date>()
-    var dateSelected: Observable<Date> {
-        return dateSelectedSubject.asObservable()
+    var dateSelected: Single<Date> {
+        return dateSelectedSubject.asSingle()
     }
 }

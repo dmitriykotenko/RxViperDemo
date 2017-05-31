@@ -14,6 +14,8 @@
 		C2146EC51ED5ABC1007A613B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2146EC41ED5ABC1007A613B /* Assets.xcassets */; };
 		C2146EC81ED5ABC1007A613B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2146EC61ED5ABC1007A613B /* LaunchScreen.storyboard */; };
 		C2146ED31ED5ABC1007A613B /* SeaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2146ED21ED5ABC1007A613B /* SeaTests.swift */; };
+		C27D84A61EDED5440049DE7C /* DateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27D84A51EDED5440049DE7C /* DateRouter.swift */; };
+		C27D84A81EDED56B0049DE7C /* DateRouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27D84A71EDED56B0049DE7C /* DateRouterImpl.swift */; };
 		C2D62A361ED5D9400084E846 /* NewsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D62A351ED5D9400084E846 /* NewsInteractor.swift */; };
 		C2D62A381ED5D9CE0084E846 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D62A371ED5D9CE0084E846 /* NewsView.swift */; };
 		C2D62A3A1ED5DA510084E846 /* NewsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D62A391ED5DA510084E846 /* NewsApi.swift */; };
@@ -58,6 +60,8 @@
 		C2146ECE1ED5ABC1007A613B /* SeaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2146ED21ED5ABC1007A613B /* SeaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeaTests.swift; sourceTree = "<group>"; };
 		C2146ED41ED5ABC1007A613B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C27D84A51EDED5440049DE7C /* DateRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateRouter.swift; sourceTree = "<group>"; };
+		C27D84A71EDED56B0049DE7C /* DateRouterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateRouterImpl.swift; sourceTree = "<group>"; };
 		C2D62A351ED5D9400084E846 /* NewsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsInteractor.swift; sourceTree = "<group>"; };
 		C2D62A371ED5D9CE0084E846 /* NewsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		C2D62A391ED5DA510084E846 /* NewsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsApi.swift; sourceTree = "<group>"; };
@@ -152,6 +156,15 @@
 			path = SeaTests;
 			sourceTree = "<group>";
 		};
+		C27D84A41EDED5340049DE7C /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				C27D84A51EDED5440049DE7C /* DateRouter.swift */,
+				C27D84A71EDED56B0049DE7C /* DateRouterImpl.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		C2D62A301ED5D8BA0084E846 /* News */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +217,7 @@
 			children = (
 				C2E29D831EDDD5DA003A993A /* Interactor */,
 				C2E29D861EDDD5DA003A993A /* Presenter */,
+				C27D84A41EDED5340049DE7C /* Router */,
 				C2E29D891EDDD5DA003A993A /* View */,
 			);
 			path = Date;
@@ -455,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2E29D931EDDD5DA003A993A /* DateViewController.swift in Sources */,
+				C27D84A61EDED5440049DE7C /* DateRouter.swift in Sources */,
 				C2E29D921EDDD5DA003A993A /* DateView.swift in Sources */,
 				C2D62A3A1ED5DA510084E846 /* NewsApi.swift in Sources */,
 				C2D62A3C1ED5DB430084E846 /* NewsInteractorImpl.swift in Sources */,
@@ -467,6 +482,7 @@
 				C2D62A381ED5D9CE0084E846 /* NewsView.swift in Sources */,
 				C2146EBE1ED5ABC1007A613B /* AppDelegate.swift in Sources */,
 				C2D62A361ED5D9400084E846 /* NewsInteractor.swift in Sources */,
+				C27D84A81EDED56B0049DE7C /* DateRouterImpl.swift in Sources */,
 				C2E29D951EDDD64D003A993A /* NewsRouter.swift in Sources */,
 				C2D62A401ED5DECB0084E846 /* NewsViewController.swift in Sources */,
 				C2E29D971EDDD658003A993A /* NewsRouterImpl.swift in Sources */,

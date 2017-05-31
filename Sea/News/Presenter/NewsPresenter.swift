@@ -23,7 +23,7 @@ class NewsPresenter {
     
     func configureModule() {
         view?.viewIsReady
-            .subscribe(onNext: { [weak self] in
+            .subscribe(onSuccess: { [weak self] in
                 self?.connectEverything()
                 self?.interactor.loadingRequest.onNext(Date())
             })
@@ -53,7 +53,7 @@ class NewsPresenter {
             .disposed(by: disposeBag)
     }
     
-    private func openDateModule(_ date: Date) -> Observable<Date> {
+    private func openDateModule(_ date: Date) -> Single<Date> {
         let dateModule = router.openDateModule(currentDate: date)
         
         return dateModule.dateSelected

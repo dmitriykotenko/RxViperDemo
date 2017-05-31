@@ -11,7 +11,7 @@ protocol DateView {
     var initialDate: Variable<Date> { get }
     
     // Выходы.
-    var viewIsReady: PublishSubject<Void> { get }
+    var viewIsReady: Single<Void> { get }
     var date: Observable<Date> { get }
     var okButtonTaps: Observable<Void> { get }
 }

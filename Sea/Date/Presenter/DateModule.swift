@@ -9,5 +9,5 @@ protocol DateModule {
 
     func configureModule(date: Date)
     
-    var dateSelected: Observable<Date> { get }
+    var dateSelected: Single<Date> { get }
 }

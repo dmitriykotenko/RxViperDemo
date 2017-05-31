@@ -15,20 +15,25 @@ class DateViewController: UIViewController, DateView {
     private var okButton: UIButton!
 
     var initialDate: Variable<Date> = Variable(Date())
-    var viewIsReady: PublishSubject<Void> = PublishSubject()
+    var viewIsReadySubject: PublishSubject<Void> = PublishSubject()
+    var viewIsReady: Single<Void> {
+        return viewIsReadySubject.asSingle()
+    }
     
     private var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewIsReady.on(.next())
-        
         okButtonTaps
+            .debug("OK button tap caught in view controller.")
             .subscribe(onNext: { [unowned self] in
-                self.dismiss(animated: true, completion: nil)
+//                self.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
+        
+        viewIsReadySubject.on(.next())
+        viewIsReadySubject.on(.completed)
     }
     
     private func setupBindings() {
@@ -43,6 +48,8 @@ class DateViewController: UIViewController, DateView {
     }
     
     var okButtonTaps: Observable<Void> {
-        return okButton.rx.tap.asObservable()
+        return okButton.rx.tap
+            .debug("OK button tap - RAW.")
+            .asObservable()
     }
 }

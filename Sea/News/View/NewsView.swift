@@ -18,7 +18,7 @@ protocol NewsView {
     var state: Variable<NewsViewState> { get }
     
     /// Выходы.
-    var viewIsReady: Observable<Void> { get }
+    var viewIsReady: Single<Void> { get }
     var loadButtonTaps: Observable<Void> { get }
     var selectDateButtonTaps: Observable<Void> { get }
 }

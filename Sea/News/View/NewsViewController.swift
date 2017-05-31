@@ -21,8 +21,8 @@ class NewsViewController: UIViewController, NewsView {
     private var reloadButton: UIButton!
     
     var viewIsReadySubject = PublishSubject<Void>()
-    var viewIsReady: Observable<Void> {
-        return viewIsReadySubject.asObservable()
+    var viewIsReady: Single<Void> {
+        return viewIsReadySubject.asSingle()
     }
     
     var state: Variable<NewsViewState> = Variable(.loading)
