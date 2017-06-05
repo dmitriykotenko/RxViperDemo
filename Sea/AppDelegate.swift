@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        let newsViewController = NewsAssembly().buildModule()
+        let newsViewController = NewsAssembly().buildModule().viewController
         window?.rootViewController = newsViewController
 
         return true

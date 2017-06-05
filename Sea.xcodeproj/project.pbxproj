@@ -17,6 +17,8 @@
 		C27D84A61EDED5440049DE7C /* DateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27D84A51EDED5440049DE7C /* DateRouter.swift */; };
 		C27D84A81EDED56B0049DE7C /* DateRouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27D84A71EDED56B0049DE7C /* DateRouterImpl.swift */; };
 		C290B5521EE5BA73006ECD90 /* NewsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = C290B5511EE5BA73006ECD90 /* NewsAssembly.swift */; };
+		C290B5541EE5C291006ECD90 /* NewsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C290B5531EE5C291006ECD90 /* NewsModule.swift */; };
+		C290B5591EE5C2DE006ECD90 /* ModuleKinds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C290B5581EE5C2DE006ECD90 /* ModuleKinds.swift */; };
 		C2D62A361ED5D9400084E846 /* NewsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D62A351ED5D9400084E846 /* NewsInteractor.swift */; };
 		C2D62A381ED5D9CE0084E846 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D62A371ED5D9CE0084E846 /* NewsView.swift */; };
 		C2D62A3A1ED5DA510084E846 /* NewsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D62A391ED5DA510084E846 /* NewsApi.swift */; };
@@ -64,6 +66,8 @@
 		C27D84A51EDED5440049DE7C /* DateRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateRouter.swift; sourceTree = "<group>"; };
 		C27D84A71EDED56B0049DE7C /* DateRouterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateRouterImpl.swift; sourceTree = "<group>"; };
 		C290B5511EE5BA73006ECD90 /* NewsAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsAssembly.swift; sourceTree = "<group>"; };
+		C290B5531EE5C291006ECD90 /* NewsModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsModule.swift; sourceTree = "<group>"; };
+		C290B5581EE5C2DE006ECD90 /* ModuleKinds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleKinds.swift; sourceTree = "<group>"; };
 		C2D62A351ED5D9400084E846 /* NewsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsInteractor.swift; sourceTree = "<group>"; };
 		C2D62A371ED5D9CE0084E846 /* NewsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		C2D62A391ED5DA510084E846 /* NewsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsApi.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 			children = (
 				C2E29D821EDDD5DA003A993A /* Date */,
 				C2D62A301ED5D8BA0084E846 /* News */,
+				C290B5571EE5C2CE006ECD90 /* Viper */,
 				C2146EBD1ED5ABC1007A613B /* AppDelegate.swift */,
 				C2D62A391ED5DA510084E846 /* NewsApi.swift */,
 				C2146EBF1ED5ABC1007A613B /* ViewController.swift */,
@@ -171,8 +176,17 @@
 			isa = PBXGroup;
 			children = (
 				C290B5511EE5BA73006ECD90 /* NewsAssembly.swift */,
+				C290B5531EE5C291006ECD90 /* NewsModule.swift */,
 			);
 			path = Assembly;
+			sourceTree = "<group>";
+		};
+		C290B5571EE5C2CE006ECD90 /* Viper */ = {
+			isa = PBXGroup;
+			children = (
+				C290B5581EE5C2DE006ECD90 /* ModuleKinds.swift */,
+			);
+			path = Viper;
 			sourceTree = "<group>";
 		};
 		C2D62A301ED5D8BA0084E846 /* News */ = {
@@ -484,7 +498,9 @@
 				C2E29D921EDDD5DA003A993A /* DateView.swift in Sources */,
 				C2D62A3A1ED5DA510084E846 /* NewsApi.swift in Sources */,
 				C2D62A3C1ED5DB430084E846 /* NewsInteractorImpl.swift in Sources */,
+				C290B5591EE5C2DE006ECD90 /* ModuleKinds.swift in Sources */,
 				C2E29D901EDDD5DA003A993A /* DatePresenter.swift in Sources */,
+				C290B5541EE5C291006ECD90 /* NewsModule.swift in Sources */,
 				C2E29D8F1EDDD5DA003A993A /* DateModule.swift in Sources */,
 				C2E29D8E1EDDD5DA003A993A /* DateInteractorImpl.swift in Sources */,
 				C2E29D8D1EDDD5DA003A993A /* DateInteractor.swift in Sources */,

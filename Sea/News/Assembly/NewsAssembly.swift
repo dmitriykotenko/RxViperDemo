@@ -16,11 +16,13 @@ class NewsAssembly {
     
     private var strongSelf: NewsAssembly!
     
-    func buildModule() -> UIViewController {
+    func buildModule() -> NewsModule {
+        let module = NewsModule()
+        
         // Хак, чтобы moduleDisposeBag не пропал мгновенно из памяти.
         strongSelf = self
         
-        moduleDisposeBag = DisposeBag()
+        moduleDisposeBag = module.disposeBag
         
         interactor = NewsInteractorImpl()
         presenter = NewsPresenter()
@@ -32,8 +34,13 @@ class NewsAssembly {
                 self?.connectEverything()
             })
             .disposed(by: moduleDisposeBag)
+
+        module.viewController = view as! UIViewController
+        presenter.date.asObservable()
+            .bind(to: module.dateSubject)
+            .disposed(by: moduleDisposeBag)
         
-        return view as! NewsViewController
+        return module
     }
     
     func connectEverything() {
