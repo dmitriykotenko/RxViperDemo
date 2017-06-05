@@ -16,14 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var newsPresenter: NewsPresenter!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        if let newsViewController = UIStoryboard(name: "News", bundle: Bundle.main).instantiateInitialViewController() as? NewsViewController {
-            newsPresenter = NewsPresenter()
-            newsPresenter.view = newsViewController
-            newsPresenter.configureModule()
-            
-            window?.rootViewController = newsPresenter.view as? UIViewController
-        }
+
+        let newsViewController = NewsAssembly().buildModule()
+        window?.rootViewController = newsViewController
 
         return true
     }

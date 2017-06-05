@@ -16,6 +16,7 @@
 		C2146ED31ED5ABC1007A613B /* SeaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2146ED21ED5ABC1007A613B /* SeaTests.swift */; };
 		C27D84A61EDED5440049DE7C /* DateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27D84A51EDED5440049DE7C /* DateRouter.swift */; };
 		C27D84A81EDED56B0049DE7C /* DateRouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27D84A71EDED56B0049DE7C /* DateRouterImpl.swift */; };
+		C290B5521EE5BA73006ECD90 /* NewsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = C290B5511EE5BA73006ECD90 /* NewsAssembly.swift */; };
 		C2D62A361ED5D9400084E846 /* NewsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D62A351ED5D9400084E846 /* NewsInteractor.swift */; };
 		C2D62A381ED5D9CE0084E846 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D62A371ED5D9CE0084E846 /* NewsView.swift */; };
 		C2D62A3A1ED5DA510084E846 /* NewsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D62A391ED5DA510084E846 /* NewsApi.swift */; };
@@ -62,6 +63,7 @@
 		C2146ED41ED5ABC1007A613B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C27D84A51EDED5440049DE7C /* DateRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateRouter.swift; sourceTree = "<group>"; };
 		C27D84A71EDED56B0049DE7C /* DateRouterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateRouterImpl.swift; sourceTree = "<group>"; };
+		C290B5511EE5BA73006ECD90 /* NewsAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsAssembly.swift; sourceTree = "<group>"; };
 		C2D62A351ED5D9400084E846 /* NewsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsInteractor.swift; sourceTree = "<group>"; };
 		C2D62A371ED5D9CE0084E846 /* NewsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		C2D62A391ED5DA510084E846 /* NewsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsApi.swift; sourceTree = "<group>"; };
@@ -165,9 +167,18 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		C290B5501EE5BA6A006ECD90 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				C290B5511EE5BA73006ECD90 /* NewsAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
 		C2D62A301ED5D8BA0084E846 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				C290B5501EE5BA6A006ECD90 /* Assembly */,
 				C2D62A311ED5D8D30084E846 /* Interactor */,
 				C2D62A321ED5D8DF0084E846 /* Presenter */,
 				C2D62A341ED5D8FE0084E846 /* Router */,
@@ -480,6 +491,7 @@
 				C2D62A3E1ED5DE8F0084E846 /* NewsPresenter.swift in Sources */,
 				C2146EC01ED5ABC1007A613B /* ViewController.swift in Sources */,
 				C2D62A381ED5D9CE0084E846 /* NewsView.swift in Sources */,
+				C290B5521EE5BA73006ECD90 /* NewsAssembly.swift in Sources */,
 				C2146EBE1ED5ABC1007A613B /* AppDelegate.swift in Sources */,
 				C2D62A361ED5D9400084E846 /* NewsInteractor.swift in Sources */,
 				C27D84A81EDED56B0049DE7C /* DateRouterImpl.swift in Sources */,

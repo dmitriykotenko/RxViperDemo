@@ -14,59 +14,49 @@ enum NewsState {
 
 class NewsPresenter {
     
-    var interactor: NewsInteractor! = NewsInteractorImpl()
     var router: NewsRouter! = NewsRouterImpl()
-    var view: NewsView!
     
-    private var date: Variable<Date> = Variable(Date())
-    private var newsState: Variable<NewsState> = Variable(.loading)
+    // Выходы.
+    var date: Variable<Date> = Variable(Date())
+    var newsState: Variable<NewsState> = Variable(.loading)
+    var loadNews: Variable<Date> = Variable(Date())
+    
+    // Входы.
+    var loadButtonTapped: PublishSubject<Void> = PublishSubject()
+    var selectDateButtonTapped: PublishSubject<Void> = PublishSubject()
+    var newsLoaded: PublishSubject<LoadingResult> = PublishSubject()
     
     private var disposeBag = DisposeBag()
     
-    func configureModule() {
-        view.viewIsReady
-            .subscribe(onSuccess: { [weak self] in
-                self?.connectEverything()
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    func connectEverything() {
-        date.asObservable()
-            .bind(to: view!.date)
-            .disposed(by: disposeBag)
-        
-        newsState.asObservable()
-            .bind(to: view!.newsState)
-            .disposed(by: disposeBag)
-        
-        view.loadButtonTaps
+    init() {
+        // Перезагружаем новости при нажатии на кнопку «Обновить».
+        loadButtonTapped
             .map { [unowned self] in self.date.value }
-            .bind(to: interactor.loadingRequest)
-            .disposed(by: disposeBag)
-
-        interactor.loadingRequest
-            .map { _ in return .loading }
-            .bind(to: newsState)
-            .disposed(by: disposeBag)
-        
-        interactor.loadingResult
-            .map { [unowned self] in self.parseLoadingResult($0) }
-            .bind(to: newsState)
-            .disposed(by: disposeBag)
-
-        // Выбор даты.
-        view.selectDateButtonTaps
-            .flatMap { [unowned self] in
-                return self.openDateModule()
-            }
-            .bind(to: date)
+            .bind(to: loadNews)
             .disposed(by: disposeBag)
         
         // Перезагружаем новости каждый раз, когда поменялась дата.
         date.asObservable()
             .distinctUntilChanged()
-            .bind(to: interactor.loadingRequest)
+            .bind(to: loadNews)
+            .disposed(by: disposeBag)
+
+        loadNews.asObservable()
+            .map { _ in return .loading }
+            .bind(to: newsState)
+            .disposed(by: disposeBag)
+        
+        newsLoaded
+            .map { [unowned self] in self.parseLoadingResult($0) }
+            .bind(to: newsState)
+            .disposed(by: disposeBag)
+
+        // Выбор даты.
+        selectDateButtonTapped
+            .flatMap { [unowned self] in
+                return self.openDateModule()
+            }
+            .bind(to: date)
             .disposed(by: disposeBag)
     }
     
