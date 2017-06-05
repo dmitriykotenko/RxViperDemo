@@ -14,9 +14,9 @@ class DateViewController: UIViewController, DateView {
     @IBOutlet
     private var okButton: UIButton!
 
-    var viewIsReadySubject: PublishSubject<Void> = PublishSubject()
-    var viewIsReady: Single<Void> {
-        return viewIsReadySubject.asSingle()
+    var readySubject: PublishSubject<Void> = PublishSubject()
+    var ready: Single<Void> {
+        return readySubject.asSingle()
     }
     
     private var disposeBag = DisposeBag()
@@ -24,8 +24,8 @@ class DateViewController: UIViewController, DateView {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewIsReadySubject.on(.next())
-        viewIsReadySubject.on(.completed)
+        readySubject.on(.next())
+        readySubject.on(.completed)
     }
     
     func setupInitialState(date: Date) {
@@ -36,7 +36,7 @@ class DateViewController: UIViewController, DateView {
         return datePicker.rx.date.asObservable()
     }
     
-    var okButtonTaps: Observable<Void> {
+    var okButtonTapped: Observable<Void> {
         return okButton.rx.tap.asObservable()
     }
 }

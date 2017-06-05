@@ -20,9 +20,9 @@ class NewsViewController: UIViewController, NewsView {
     @IBOutlet
     private var reloadButton: UIButton!
     
-    var viewIsReadySubject = PublishSubject<Void>()
-    var viewIsReady: Single<Void> {
-        return viewIsReadySubject.asSingle()
+    var readySubject = PublishSubject<Void>()
+    var ready: Single<Void> {
+        return readySubject.asSingle()
     }
     
     var date: Variable<Date> = Variable(Date())
@@ -35,8 +35,8 @@ class NewsViewController: UIViewController, NewsView {
 
         setupBindings()
         
-        viewIsReadySubject.on(.next())
-        viewIsReadySubject.on(.completed)
+        readySubject.on(.next())
+        readySubject.on(.completed)
     }
     
     func setupBindings() {
@@ -83,11 +83,11 @@ class NewsViewController: UIViewController, NewsView {
         return dateFormatter.string(from: date)
     }
     
-    var loadButtonTaps: Observable<Void> {
+    var loadButtonTapped: Observable<Void> {
         return reloadButton.rx.tap.asObservable()
     }
     
-    var selectDateButtonTaps: Observable<Void> {
+    var selectDateButtonTapped: Observable<Void> {
         return dateButton.rx.tap.asObservable()
     }
 }

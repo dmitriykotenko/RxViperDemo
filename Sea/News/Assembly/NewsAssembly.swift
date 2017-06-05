@@ -27,7 +27,7 @@ class NewsAssembly {
         router = NewsRouterImpl()
         view = UIStoryboard(name: "News", bundle: Bundle.main).instantiateInitialViewController() as! NewsViewController
         
-        view.viewIsReady
+        view.ready
             .subscribe(onSuccess: { [weak self] in
                 self?.connectEverything()
             })
@@ -39,19 +39,19 @@ class NewsAssembly {
     func connectEverything() {
         // 1. Bind interactor to presenter.
         presenter.loadNews.asObservable()
-            .bind(to: interactor.loadingRequest)
+            .bind(to: interactor.loadNews)
             .disposed(by: moduleDisposeBag)
         
-        interactor.loadingResult
+        interactor.newsLoaded
             .bind(to: presenter.newsLoaded)
             .disposed(by: moduleDisposeBag)
         
         // 2. Bind presenter to view.
-        view.loadButtonTaps
+        view.loadButtonTapped
             .bind(to: presenter.loadButtonTapped)
             .disposed(by: moduleDisposeBag)
         
-        view.selectDateButtonTaps
+        view.selectDateButtonTapped
             .bind(to: presenter.selectDateButtonTapped)
             .disposed(by: moduleDisposeBag)
         

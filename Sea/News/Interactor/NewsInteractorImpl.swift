@@ -7,14 +7,14 @@ import RxSwift
 
 class NewsInteractorImpl: NewsInteractor {
     
-    var loadingResultSubject: PublishSubject<LoadingResult> = PublishSubject()
+    var newsLoadedSubject: PublishSubject<LoadingResult> = PublishSubject()
     
-    var loadingResult: Observable<LoadingResult> {
-        return loadingResultSubject.asObservable()
+    var newsLoaded: Observable<LoadingResult> {
+        return newsLoadedSubject.asObservable()
     }
 
     var api: NewsApi = NewsApiImpl()
-    var loadingRequest: PublishSubject<Date> = PublishSubject()
+    var loadNews: PublishSubject<Date> = PublishSubject()
     
     private var disposeBag = DisposeBag()
 
@@ -23,7 +23,7 @@ class NewsInteractorImpl: NewsInteractor {
     }
     
     private func setupBindings() {
-        loadingRequest
+        loadNews
             .subscribe(onNext: loadNews)
             .disposed(by: disposeBag)
     }
@@ -31,10 +31,10 @@ class NewsInteractorImpl: NewsInteractor {
     func loadNews(date: Date) {
         api.news(date: date) { [weak self] (news, error) in
             if let news = news {
-                self?.loadingResultSubject.onNext(.success(news: news, date: date))
+                self?.newsLoadedSubject.onNext(.success(news: news, date: date))
             } else {
                 let errorText = error ?? "Неизвестная ошибка"
-                self?.loadingResultSubject.onNext(.error(text: errorText))
+                self?.newsLoadedSubject.onNext(.error(text: errorText))
             }
         }
     }

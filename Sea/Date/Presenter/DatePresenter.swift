@@ -17,7 +17,7 @@ class DatePresenter: DateModule {
     func configureModule(date: Date) {
         self.date.value = date
         
-        view.viewIsReady.subscribe(onSuccess: { [weak self] in
+        view.ready.subscribe(onSuccess: { [weak self] in
             self?.connectEverything()
         })
         .disposed(by: disposeBag)
@@ -30,7 +30,7 @@ class DatePresenter: DateModule {
             .bind(to: date)
             .disposed(by: disposeBag)
         
-        view.okButtonTaps
+        view.okButtonTapped
             .subscribe( onNext: { _ in
                 self.done()
             })

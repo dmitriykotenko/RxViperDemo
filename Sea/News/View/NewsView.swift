@@ -12,7 +12,7 @@ protocol NewsView {
     var newsState: Variable<NewsState> { get }
     
     /// Выходы.
-    var viewIsReady: Single<Void> { get }
-    var loadButtonTaps: Observable<Void> { get }
-    var selectDateButtonTaps: Observable<Void> { get }
+    var ready: Single<Void> { get }
+    var loadButtonTapped: Observable<Void> { get }
+    var selectDateButtonTapped: Observable<Void> { get }
 }
