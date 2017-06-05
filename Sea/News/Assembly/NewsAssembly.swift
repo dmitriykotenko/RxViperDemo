@@ -62,5 +62,17 @@ class NewsAssembly {
         presenter.newsState.asObservable()
             .bind(to: view.newsState)
             .disposed(by: moduleDisposeBag)
+        
+        // 3. Bind presenter to router.
+        presenter.selectDate
+            .flatMap( runDateModule )
+            .bind(to: presenter.date)
+            .disposed(by: moduleDisposeBag)
+    }
+    
+    private func runDateModule() -> Single<Date> {
+        let dateModule = router.openDateModule(currentDate: presenter.date.value)
+        
+        return dateModule.dateSelected
     }
 }

@@ -14,8 +14,6 @@ enum NewsState {
 
 class NewsPresenter {
     
-    var router: NewsRouter! = NewsRouterImpl()
-    
     // Выходы.
     var date: Variable<Date> = Variable(Date())
     var newsState: Variable<NewsState> = Variable(.loading)
@@ -24,6 +22,7 @@ class NewsPresenter {
     // Входы.
     var loadButtonTapped: PublishSubject<Void> = PublishSubject()
     var selectDateButtonTapped: PublishSubject<Void> = PublishSubject()
+    var selectDate: PublishSubject<Void> = PublishSubject()
     var newsLoaded: PublishSubject<LoadingResult> = PublishSubject()
     
     private var disposeBag = DisposeBag()
@@ -53,17 +52,8 @@ class NewsPresenter {
 
         // Выбор даты.
         selectDateButtonTapped
-            .flatMap { [unowned self] in
-                return self.openDateModule()
-            }
-            .bind(to: date)
+            .bind(to: selectDate)
             .disposed(by: disposeBag)
-    }
-    
-    private func openDateModule() -> Single<Date> {
-        let dateModule = router.openDateModule(currentDate: date.value)
-        
-        return dateModule.dateSelected
     }
     
     private func parseLoadingResult(_ loadingResult: LoadingResult) -> NewsState {
