@@ -2,12 +2,24 @@
 //  Copyright © 2017 Tutu.ru. All rights reserved.
 //
 
+import RxSwift
 import UIKit
 
 
 class DateRouterImpl: DateRouter {
     
-    func close() {
+    var close: PublishSubject<Void> = PublishSubject()
+    private var disposeBag = DisposeBag()
+
+    init() {
+        close
+            .subscribe(onNext: { [unowned self] in
+                self.closeModule()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func closeModule() {
         currentViewController.dismiss(animated: true, completion: nil)
     }
     

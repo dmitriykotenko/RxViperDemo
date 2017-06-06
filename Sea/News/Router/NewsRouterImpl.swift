@@ -8,17 +8,11 @@ import UIKit
 class NewsRouterImpl: NewsRouter {
     
     func openDateModule(currentDate: Date) -> DateModule {        
-        guard let dateViewController = UIStoryboard(name: "Date", bundle: Bundle.main).instantiateInitialViewController() as? DateViewController else {
-            fatalError("Can not instantiate DateViewController.")
-        }
-
-        let datePresenter = DatePresenter()
-        datePresenter.view = dateViewController
-        datePresenter.configureModule(date: currentDate)
+        let dateModule = DateAssembly().buildModule(date: currentDate)
         
-        currentViewController.present(dateViewController, animated: true, completion: nil)
+        currentViewController.present(dateModule.viewController, animated: true, completion: nil)
         
-        return datePresenter
+        return dateModule
     }
     
     private var currentViewController: UIViewController {

@@ -5,32 +5,33 @@
 import RxSwift
 
 
-class DatePresenter: DateModule {
+class DatePresenter {
 
     var router: DateRouter! = DateRouterImpl()
     var view: DateView!
     
+    // Входы.
+    var initialDate: Variable<Date> = Variable(Date())
     var date: Variable<Date> = Variable(Date())
+    var okButtonTapped: PublishSubject<Void> = PublishSubject()
+    
+    // Выходы.
+    private var dateSelectedSubject = PublishSubject<Date>()
+    var dateSelected: Single<Date> {
+        return dateSelectedSubject.asSingle()
+    }
+    
+    private var closeSubject = PublishSubject<Void>()
+    var close: Single<Void> {
+        return closeSubject.asSingle()
+    }
     
     private var disposeBag = DisposeBag()
     
-    func configureModule(date: Date) {
-        self.date.value = date
+    init(date: Date) {
+        self.initialDate.value = date
         
-        view.ready.subscribe(onSuccess: { [weak self] in
-            self?.connectEverything()
-        })
-        .disposed(by: disposeBag)
-    }
-    
-    func connectEverything() {
-        view.setupInitialState(date: date.value)
-        
-        view.date
-            .bind(to: date)
-            .disposed(by: disposeBag)
-        
-        view.okButtonTapped
+        okButtonTapped
             .subscribe( onNext: { _ in
                 self.done()
             })
@@ -40,11 +41,8 @@ class DatePresenter: DateModule {
     private func done() {
         dateSelectedSubject.onNext(date.value)
         dateSelectedSubject.onCompleted()
-        router.close()
-    }
-    
-    var dateSelectedSubject = PublishSubject<Date>()
-    var dateSelected: Single<Date> {
-        return dateSelectedSubject.asSingle()
+        
+        closeSubject.onNext()
+        closeSubject.onCompleted()
     }
 }

@@ -19,17 +19,19 @@ class DateViewController: UIViewController, DateView {
         return readySubject.asSingle()
     }
     
+    var initialDate: PublishSubject<Date> = PublishSubject()
+    
     private var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initialDate
+            .bind(to: datePicker.rx.date)
+            .disposed(by: disposeBag)
+        
         readySubject.on(.next())
         readySubject.on(.completed)
-    }
-    
-    func setupInitialState(date: Date) {
-        datePicker.date = date
     }
     
     var date: Observable<Date> {

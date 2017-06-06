@@ -25,10 +25,11 @@
 		C2D62A3C1ED5DB430084E846 /* NewsInteractorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D62A3B1ED5DB430084E846 /* NewsInteractorImpl.swift */; };
 		C2D62A3E1ED5DE8F0084E846 /* NewsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D62A3D1ED5DE8F0084E846 /* NewsPresenter.swift */; };
 		C2D62A401ED5DECB0084E846 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D62A3F1ED5DECB0084E846 /* NewsViewController.swift */; };
+		C2DDABCA1EE69CAD00F90147 /* DateAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DDABC91EE69CAD00F90147 /* DateAssembly.swift */; };
+		C2DDABCC1EE69CD800F90147 /* DateModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DDABCB1EE69CD800F90147 /* DateModule.swift */; };
 		C2E29D7D1EDDC893003A993A /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E29D7C1EDDC893003A993A /* News.storyboard */; };
 		C2E29D8D1EDDD5DA003A993A /* DateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E29D841EDDD5DA003A993A /* DateInteractor.swift */; };
 		C2E29D8E1EDDD5DA003A993A /* DateInteractorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E29D851EDDD5DA003A993A /* DateInteractorImpl.swift */; };
-		C2E29D8F1EDDD5DA003A993A /* DateModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E29D871EDDD5DA003A993A /* DateModule.swift */; };
 		C2E29D901EDDD5DA003A993A /* DatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E29D881EDDD5DA003A993A /* DatePresenter.swift */; };
 		C2E29D911EDDD5DA003A993A /* Date.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E29D8A1EDDD5DA003A993A /* Date.storyboard */; };
 		C2E29D921EDDD5DA003A993A /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E29D8B1EDDD5DA003A993A /* DateView.swift */; };
@@ -74,16 +75,17 @@
 		C2D62A3B1ED5DB430084E846 /* NewsInteractorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsInteractorImpl.swift; sourceTree = "<group>"; };
 		C2D62A3D1ED5DE8F0084E846 /* NewsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsPresenter.swift; sourceTree = "<group>"; };
 		C2D62A3F1ED5DECB0084E846 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		C2DDABC91EE69CAD00F90147 /* DateAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateAssembly.swift; sourceTree = "<group>"; };
+		C2DDABCB1EE69CD800F90147 /* DateModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateModule.swift; sourceTree = "<group>"; };
 		C2E29D7C1EDDC893003A993A /* News.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
 		C2E29D841EDDD5DA003A993A /* DateInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateInteractor.swift; sourceTree = "<group>"; };
 		C2E29D851EDDD5DA003A993A /* DateInteractorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateInteractorImpl.swift; sourceTree = "<group>"; };
-		C2E29D871EDDD5DA003A993A /* DateModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateModule.swift; sourceTree = "<group>"; };
 		C2E29D881EDDD5DA003A993A /* DatePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePresenter.swift; sourceTree = "<group>"; };
 		C2E29D8A1EDDD5DA003A993A /* Date.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Date.storyboard; sourceTree = "<group>"; };
 		C2E29D8B1EDDD5DA003A993A /* DateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		C2E29D8C1EDDD5DA003A993A /* DateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
-		C2E29D941EDDD64D003A993A /* NewsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsRouter.swift; path = NewsRouter.swift; sourceTree = "<group>"; };
-		C2E29D961EDDD658003A993A /* NewsRouterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsRouterImpl.swift; path = NewsRouterImpl.swift; sourceTree = "<group>"; };
+		C2E29D941EDDD64D003A993A /* NewsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsRouter.swift; sourceTree = "<group>"; };
+		C2E29D961EDDD658003A993A /* NewsRouterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsRouterImpl.swift; sourceTree = "<group>"; };
 		CF014DDDEB143E999C97F282 /* Pods-Sea.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sea.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sea/Pods-Sea.release.xcconfig"; sourceTree = "<group>"; };
 		F42216C014761ECEBE897224 /* Pods-SeaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SeaTests/Pods-SeaTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,9 +239,19 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		C2DDABC81EE69CA300F90147 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				C2DDABC91EE69CAD00F90147 /* DateAssembly.swift */,
+				C2DDABCB1EE69CD800F90147 /* DateModule.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
 		C2E29D821EDDD5DA003A993A /* Date */ = {
 			isa = PBXGroup;
 			children = (
+				C2DDABC81EE69CA300F90147 /* Assembly */,
 				C2E29D831EDDD5DA003A993A /* Interactor */,
 				C2E29D861EDDD5DA003A993A /* Presenter */,
 				C27D84A41EDED5340049DE7C /* Router */,
@@ -260,7 +272,6 @@
 		C2E29D861EDDD5DA003A993A /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				C2E29D871EDDD5DA003A993A /* DateModule.swift */,
 				C2E29D881EDDD5DA003A993A /* DatePresenter.swift */,
 			);
 			path = Presenter;
@@ -354,7 +365,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C2146EB51ED5ABC1007A613B /* Build configuration list for PBXProject "sea" */;
+			buildConfigurationList = C2146EB51ED5ABC1007A613B /* Build configuration list for PBXProject "Sea" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -500,10 +511,11 @@
 				C2D62A3C1ED5DB430084E846 /* NewsInteractorImpl.swift in Sources */,
 				C290B5591EE5C2DE006ECD90 /* ModuleKinds.swift in Sources */,
 				C2E29D901EDDD5DA003A993A /* DatePresenter.swift in Sources */,
+				C2DDABCC1EE69CD800F90147 /* DateModule.swift in Sources */,
 				C290B5541EE5C291006ECD90 /* NewsModule.swift in Sources */,
-				C2E29D8F1EDDD5DA003A993A /* DateModule.swift in Sources */,
 				C2E29D8E1EDDD5DA003A993A /* DateInteractorImpl.swift in Sources */,
 				C2E29D8D1EDDD5DA003A993A /* DateInteractor.swift in Sources */,
+				C2DDABCA1EE69CAD00F90147 /* DateAssembly.swift in Sources */,
 				C2D62A3E1ED5DE8F0084E846 /* NewsPresenter.swift in Sources */,
 				C2146EC01ED5ABC1007A613B /* ViewController.swift in Sources */,
 				C2D62A381ED5D9CE0084E846 /* NewsView.swift in Sources */,
@@ -715,7 +727,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C2146EB51ED5ABC1007A613B /* Build configuration list for PBXProject "sea" */ = {
+		C2146EB51ED5ABC1007A613B /* Build configuration list for PBXProject "Sea" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C2146ED51ED5ABC1007A613B /* Debug */,
