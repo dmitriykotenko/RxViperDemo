@@ -82,8 +82,8 @@
 		C2E29D8A1EDDD5DA003A993A /* Date.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Date.storyboard; sourceTree = "<group>"; };
 		C2E29D8B1EDDD5DA003A993A /* DateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		C2E29D8C1EDDD5DA003A993A /* DateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
-		C2E29D941EDDD64D003A993A /* NewsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsRouter.swift; path = Sea/NewsRouter.swift; sourceTree = SOURCE_ROOT; };
-		C2E29D961EDDD658003A993A /* NewsRouterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsRouterImpl.swift; path = Sea/NewsRouterImpl.swift; sourceTree = SOURCE_ROOT; };
+		C2E29D941EDDD64D003A993A /* NewsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsRouter.swift; path = NewsRouter.swift; sourceTree = "<group>"; };
+		C2E29D961EDDD658003A993A /* NewsRouterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsRouterImpl.swift; path = NewsRouterImpl.swift; sourceTree = "<group>"; };
 		CF014DDDEB143E999C97F282 /* Pods-Sea.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sea.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sea/Pods-Sea.release.xcconfig"; sourceTree = "<group>"; };
 		F42216C014761ECEBE897224 /* Pods-SeaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SeaTests/Pods-SeaTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,11 +120,11 @@
 		C2146EB11ED5ABC1007A613B = {
 			isa = PBXGroup;
 			children = (
+				6D00B2BA0908A1A91463956E /* Frameworks */,
+				D47B4CD53B33D4F162EE188B /* Pods */,
+				C2146EBB1ED5ABC1007A613B /* Products */,
 				C2146EBC1ED5ABC1007A613B /* Sea */,
 				C2146ED11ED5ABC1007A613B /* SeaTests */,
-				C2146EBB1ED5ABC1007A613B /* Products */,
-				D47B4CD53B33D4F162EE188B /* Pods */,
-				6D00B2BA0908A1A91463956E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -144,12 +144,12 @@
 				C2D62A301ED5D8BA0084E846 /* News */,
 				C290B5571EE5C2CE006ECD90 /* Viper */,
 				C2146EBD1ED5ABC1007A613B /* AppDelegate.swift */,
+				C2146EC41ED5ABC1007A613B /* Assets.xcassets */,
+				C2146EC91ED5ABC1007A613B /* Info.plist */,
+				C2146EC61ED5ABC1007A613B /* LaunchScreen.storyboard */,
+				C2146EC11ED5ABC1007A613B /* Main.storyboard */,
 				C2D62A391ED5DA510084E846 /* NewsApi.swift */,
 				C2146EBF1ED5ABC1007A613B /* ViewController.swift */,
-				C2146EC11ED5ABC1007A613B /* Main.storyboard */,
-				C2146EC41ED5ABC1007A613B /* Assets.xcassets */,
-				C2146EC61ED5ABC1007A613B /* LaunchScreen.storyboard */,
-				C2146EC91ED5ABC1007A613B /* Info.plist */,
 			);
 			path = Sea;
 			sourceTree = "<group>";
@@ -157,8 +157,8 @@
 		C2146ED11ED5ABC1007A613B /* SeaTests */ = {
 			isa = PBXGroup;
 			children = (
-				C2146ED21ED5ABC1007A613B /* SeaTests.swift */,
 				C2146ED41ED5ABC1007A613B /* Info.plist */,
+				C2146ED21ED5ABC1007A613B /* SeaTests.swift */,
 			);
 			path = SeaTests;
 			sourceTree = "<group>";
@@ -354,7 +354,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C2146EB51ED5ABC1007A613B /* Build configuration list for PBXProject "Sea" */;
+			buildConfigurationList = C2146EB51ED5ABC1007A613B /* Build configuration list for PBXProject "sea" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -542,6 +542,7 @@
 				C2146EC21ED5ABC1007A613B /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		C2146EC61ED5ABC1007A613B /* LaunchScreen.storyboard */ = {
@@ -550,6 +551,7 @@
 				C2146EC71ED5ABC1007A613B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -713,7 +715,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C2146EB51ED5ABC1007A613B /* Build configuration list for PBXProject "Sea" */ = {
+		C2146EB51ED5ABC1007A613B /* Build configuration list for PBXProject "sea" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C2146ED51ED5ABC1007A613B /* Debug */,
