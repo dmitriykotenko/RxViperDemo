@@ -8,6 +8,8 @@ import RxSwift
 
 class DateViewController: UIViewController, DateView {
     
+    var moduleReference: Any?
+    
     @IBOutlet
     private var datePicker: UIDatePicker!
 

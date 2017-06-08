@@ -7,6 +7,9 @@ import RxSwift
 
 protocol NewsView {
     
+    /// Сильная ссылка на все компоненты модуля. Нужна, чтобы они не пропали из памяти раньше времени.
+    var moduleReference: Any? { get set }
+    
     /// Входы.
     var date: Variable<Date> { get }
     var newsState: Variable<NewsState> { get }

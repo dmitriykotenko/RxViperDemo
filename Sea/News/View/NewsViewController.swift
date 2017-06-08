@@ -20,6 +20,8 @@ class NewsViewController: UIViewController, NewsView {
     @IBOutlet
     private var reloadButton: UIButton!
     
+    var moduleReference: Any?
+    
     var readySubject = PublishSubject<Void>()
     var ready: Single<Void> {
         return readySubject.asSingle()

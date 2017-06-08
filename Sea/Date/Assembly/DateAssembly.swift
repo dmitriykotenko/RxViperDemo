@@ -14,13 +14,8 @@ class DateAssembly {
     private var module: DateModule!
     private var moduleDisposeBag: DisposeBag!
     
-    private var strongSelf: DateAssembly!
-    
     func buildModule(date: Date) -> DateModule {
         module = DateModule()
-
-        // Хак, чтобы moduleDisposeBag не пропал мгновенно из памяти.
-        strongSelf = self
         
         moduleDisposeBag = module.disposeBag
         
@@ -28,9 +23,12 @@ class DateAssembly {
         router = DateRouterImpl()
         view = UIStoryboard(name: "Date", bundle: Bundle.main).instantiateInitialViewController() as! DateViewController
         
+        let moduleReference: [Any] = [module, presenter, router]
+        view.moduleReference = moduleReference
+        
         view.ready
-            .subscribe(onSuccess: { [weak self] in
-                self?.connectEverything()
+            .subscribe(onSuccess: {
+                self.connectEverything()
             })
             .disposed(by: moduleDisposeBag)
         

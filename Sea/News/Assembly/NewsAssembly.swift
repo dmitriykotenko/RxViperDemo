@@ -14,13 +14,8 @@ class NewsAssembly {
     
     private var moduleDisposeBag = DisposeBag()
     
-    private var strongSelf: NewsAssembly!
-    
     func buildModule() -> NewsModule {
         let module = NewsModule()
-        
-        // Хак, чтобы moduleDisposeBag не пропал мгновенно из памяти.
-        strongSelf = self
         
         moduleDisposeBag = module.disposeBag
         
@@ -29,9 +24,12 @@ class NewsAssembly {
         router = NewsRouterImpl()
         view = UIStoryboard(name: "News", bundle: Bundle.main).instantiateInitialViewController() as! NewsViewController
         
+        let moduleReference: [Any] = [module, interactor, presenter, router]
+        view.moduleReference = moduleReference
+        
         view.ready
-            .subscribe(onSuccess: { [weak self] in
-                self?.connectEverything()
+            .subscribe(onSuccess: {
+                self.connectEverything()
             })
             .disposed(by: moduleDisposeBag)
 

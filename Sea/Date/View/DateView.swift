@@ -6,6 +6,9 @@ import RxSwift
 
 
 protocol DateView {
+
+    /// Сильная ссылка на все компоненты модуля. Нужна, чтобы они не пропали из памяти раньше времени.
+    var moduleReference: Any? { get set }
     
     // Входы.
     var initialDate: PublishSubject<Date> { get }

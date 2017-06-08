@@ -13,8 +13,8 @@ class DateRouterImpl: DateRouter {
 
     init() {
         close
-            .subscribe(onNext: { [unowned self] in
-                self.closeModule()
+            .subscribe(onNext: { [weak self] in
+                self?.closeModule()
             })
             .disposed(by: disposeBag)
     }
