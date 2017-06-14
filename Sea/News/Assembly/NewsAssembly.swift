@@ -34,7 +34,7 @@ class NewsAssembly {
             .disposed(by: moduleDisposeBag)
 
         module.viewController = view as! UIViewController
-        presenter.date.asObservable()
+        presenter.date
             .bind(to: module.dateSubject)
             .disposed(by: moduleDisposeBag)
         
@@ -43,7 +43,7 @@ class NewsAssembly {
     
     func connectEverything() {
         // 1. Bind interactor to presenter.
-        presenter.loadNews.asObservable()
+        presenter.loadNews
             .bind(to: interactor.loadNews)
             .disposed(by: moduleDisposeBag)
         
@@ -60,23 +60,23 @@ class NewsAssembly {
             .bind(to: presenter.selectDateButtonTapped)
             .disposed(by: moduleDisposeBag)
         
-        presenter.date.asObservable()
+        presenter.date
             .bind(to: view.date)
             .disposed(by: moduleDisposeBag)
         
-        presenter.newsState.asObservable()
+        presenter.newsState
             .bind(to: view.newsState)
             .disposed(by: moduleDisposeBag)
         
         // 3. Bind presenter to router.
         presenter.selectDate
             .flatMap( runDateModule )
-            .bind(to: presenter.date)
+            .bind(to: presenter.dateSelected)
             .disposed(by: moduleDisposeBag)
     }
     
-    private func runDateModule() -> Single<Date> {
-        let dateModule = router.openDateModule(currentDate: presenter.date.value)
+    private func runDateModule(_ currentDate: Date) -> Single<Date> {
+        let dateModule = router.openDateModule(currentDate: currentDate)
         
         return dateModule.dateSelected
     }
