@@ -11,8 +11,7 @@ protocol NewsView {
     var moduleReference: Any? { get set }
     
     /// Входы.
-    var date: Variable<Date> { get }
-    var newsState: Variable<NewsState> { get }
+    var viewModel: Variable<NewsViewState> { get }
     
     /// Выходы.
     var ready: Single<Void> { get }

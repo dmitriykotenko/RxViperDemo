@@ -16,13 +16,14 @@ class NewsPresenter {
     
     // Выходы.
     private var dateVariable: Variable<Date> = Variable(Date())
-    var date: Observable<Date> {
-        return dateVariable.asObservable()
-    }
-    
     private var newsStateVariable: Variable<NewsState> = Variable(.loading)
-    var newsState: Observable<NewsState> {
-        return newsStateVariable.asObservable()
+    var viewModel: Observable<NewsViewState> {
+        return Observable.combineLatest(
+            dateVariable.asObservable(),
+            newsStateVariable.asObservable()
+        ) { (date, news) in
+            NewsViewState(date: date, newsState: news)
+        }
     }
     
     private var loadNewsVariable: Variable<Date> = Variable(Date())

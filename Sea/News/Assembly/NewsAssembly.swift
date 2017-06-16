@@ -34,9 +34,6 @@ class NewsAssembly {
             .disposed(by: moduleDisposeBag)
 
         module.viewController = view as! UIViewController
-        presenter.date
-            .bind(to: module.dateSubject)
-            .disposed(by: moduleDisposeBag)
         
         return module
     }
@@ -60,12 +57,8 @@ class NewsAssembly {
             .bind(to: presenter.selectDateButtonTapped)
             .disposed(by: moduleDisposeBag)
         
-        presenter.date
-            .bind(to: view.date)
-            .disposed(by: moduleDisposeBag)
-        
-        presenter.newsState
-            .bind(to: view.newsState)
+        presenter.viewModel
+            .bind(to: view.viewModel)
             .disposed(by: moduleDisposeBag)
         
         // 3. Bind presenter to router.

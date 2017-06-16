@@ -20,6 +20,7 @@ class NewsViewController: UIViewController, NewsView {
     @IBOutlet
     private var reloadButton: UIButton!
     
+    /// Ссылка на компоненты модуля.
     var moduleReference: Any?
     
     var readySubject = PublishSubject<Void>()
@@ -27,8 +28,7 @@ class NewsViewController: UIViewController, NewsView {
         return readySubject.asSingle()
     }
     
-    var date: Variable<Date> = Variable(Date())
-    var newsState: Variable<NewsState> = Variable(.loading)
+    var viewModel: Variable<NewsViewState> = Variable(NewsViewState(date: Date(), newsState: .loading))
     
     private var disposeBag = DisposeBag()
     
@@ -41,50 +41,26 @@ class NewsViewController: UIViewController, NewsView {
         readySubject.on(.completed)
     }
     
-    func setupBindings() {
-        date.asObservable()
-            .map { [unowned self] in self.formatDate($0) }
-            .bind(to: dateButton.rx.title())
-            .disposed(by: disposeBag)
-        
-        newsState.asDriver()
-            .drive(onNext: displayNewsState )
+    private func setupBindings() {
+        viewModel.asObservable()
+            .subscribe(onNext: { [weak self] in
+                self?.update($0)
+            })
             .disposed(by: disposeBag)
     }
     
-    func displayNewsState(_ state: NewsState) {
-        switch state {
-        case .loading:
-            titleLabel.text = "Загружаем новости..."
-            dateButton.isHidden = true
-            newsLabel.alpha = 0.25
-            reloadButton.isEnabled = false
-            reloadButton.isHidden = true
-        case let .success(news, _):
-            titleLabel.text = "Новости за "
-            dateButton.isHidden = false
-            newsLabel.alpha = 1
-            newsLabel.text = news.joined(separator: "\n")
-            reloadButton.isEnabled = true
-            reloadButton.isHidden = false
-        case let .error(errorText):
-            titleLabel.text = errorText
-            dateButton.isHidden = true
-            newsLabel.alpha = 1
-            newsLabel.text = nil
-            reloadButton.isEnabled = true
-            reloadButton.isHidden = false
-        }
-    }
-    
-    private func formatDate(_ date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "d MMMM"
-        dateFormatter.locale = Locale(identifier: "ru-RU")
+    private func update(_ state: NewsViewState) {
+        titleLabel.text = state.title
+        dateButton.setTitle(state.selectDateButtonTitle, for: UIControlState.normal)
+        dateButton.isHidden = state.isSelectDateButtonHidden
         
-        return dateFormatter.string(from: date)
+        newsLabel.text = state.text
+        newsLabel.alpha = state.textAlpha
+        
+        reloadButton.isHidden = state.isLoadButtonHidden
+        reloadButton.isEnabled = state.isLoadButtonEnabled
     }
-    
+
     var loadButtonTapped: Observable<Void> {
         return reloadButton.rx.tap.asObservable()
     }

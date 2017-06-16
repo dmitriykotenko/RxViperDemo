@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		16FB8E6A7F5A37C888E25E8B /* Pods_SeaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B6C5818E77A54D4B5F001 /* Pods_SeaTests.framework */; };
+		C209BCFA1EF197B500C63627 /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C209BCF91EF197B500C63627 /* NewsViewModel.swift */; };
 		C2146EBE1ED5ABC1007A613B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2146EBD1ED5ABC1007A613B /* AppDelegate.swift */; };
 		C2146EC01ED5ABC1007A613B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2146EBF1ED5ABC1007A613B /* ViewController.swift */; };
 		C2146EC31ED5ABC1007A613B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2146EC11ED5ABC1007A613B /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 		6C504D3414CD5078C48F1B58 /* Pods_Sea.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sea.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3EE6775FAF7A452ECD8CF4 /* Pods-Sea.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sea.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sea/Pods-Sea.debug.xcconfig"; sourceTree = "<group>"; };
 		BC6B6C5818E77A54D4B5F001 /* Pods_SeaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C209BCF91EF197B500C63627 /* NewsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		C2146EBA1ED5ABC1007A613B /* Sea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2146EBD1ED5ABC1007A613B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2146EBF1ED5ABC1007A613B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				C2E29D7C1EDDC893003A993A /* News.storyboard */,
 				C2D62A371ED5D9CE0084E846 /* NewsView.swift */,
 				C2D62A3F1ED5DECB0084E846 /* NewsViewController.swift */,
+				C209BCF91EF197B500C63627 /* NewsViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				C2D62A3E1ED5DE8F0084E846 /* NewsPresenter.swift in Sources */,
 				C2146EC01ED5ABC1007A613B /* ViewController.swift in Sources */,
 				C2D62A381ED5D9CE0084E846 /* NewsView.swift in Sources */,
+				C209BCFA1EF197B500C63627 /* NewsViewModel.swift in Sources */,
 				C290B5521EE5BA73006ECD90 /* NewsAssembly.swift in Sources */,
 				C2146EBE1ED5ABC1007A613B /* AppDelegate.swift in Sources */,
 				C2D62A361ED5D9400084E846 /* NewsInteractor.swift in Sources */,
