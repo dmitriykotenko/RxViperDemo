@@ -5,7 +5,13 @@
 import RxSwift
 
 
-class NewsInteractorImpl: NewsInteractor {
+enum LoadingResult {
+    case success(news: News, date: Date)
+    case error(text: String)
+}
+
+
+class NewsInteractor {
     
     var newsLoadedSubject: PublishSubject<LoadingResult> = PublishSubject()
     

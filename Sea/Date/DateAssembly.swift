@@ -9,7 +9,7 @@ class DateAssembly {
     
     private var presenter: DatePresenter!
     private var router: DateRouter!
-    private var view: DateView!
+    private var view: DateViewController!
     
     private var module: DateModule!
     private var moduleDisposeBag: DisposeBag!
@@ -20,7 +20,7 @@ class DateAssembly {
         moduleDisposeBag = module.disposeBag
         
         presenter = DatePresenter(date: date)
-        router = DateRouterImpl()
+        router = DateRouter()
         view = UIStoryboard(name: "Date", bundle: Bundle.main).instantiateInitialViewController() as! DateViewController
         
         let moduleReference: [Any] = [module, presenter, router]
@@ -32,7 +32,7 @@ class DateAssembly {
             })
             .disposed(by: moduleDisposeBag)
         
-        module.viewController = view as! DateViewController
+        module.viewController = view
         
         return module
     }

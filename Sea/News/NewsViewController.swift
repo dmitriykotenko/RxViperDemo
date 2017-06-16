@@ -6,7 +6,7 @@ import RxSwift
 import RxCocoa
 
 
-class NewsViewController: UIViewController, NewsView {
+class NewsViewController: UIViewController {
     
     @IBOutlet
     private var titleLabel: UILabel!

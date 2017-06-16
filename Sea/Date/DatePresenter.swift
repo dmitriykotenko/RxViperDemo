@@ -6,9 +6,6 @@ import RxSwift
 
 
 class DatePresenter {
-
-    var router: DateRouter! = DateRouterImpl()
-    var view: DateView!
     
     // Входы.
     var initialDate: Variable<Date> = Variable(Date())

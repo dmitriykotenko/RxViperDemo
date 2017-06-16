@@ -6,7 +6,7 @@ import RxCocoa
 import RxSwift
 
 
-class DateViewController: UIViewController, DateView {
+class DateViewController: UIViewController {
     
     var moduleReference: Any?
     

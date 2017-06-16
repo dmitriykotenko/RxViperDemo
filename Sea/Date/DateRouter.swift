@@ -6,7 +6,7 @@ import RxSwift
 import UIKit
 
 
-class DateRouterImpl: DateRouter {
+class DateRouter {
     
     var close: PublishSubject<Void> = PublishSubject()
     private var disposeBag = DisposeBag()

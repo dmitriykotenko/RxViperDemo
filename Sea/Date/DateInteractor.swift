@@ -3,6 +3,4 @@
 //
 
 
-protocol DateInteractor {
-    
-}
+class DateInteractor {}

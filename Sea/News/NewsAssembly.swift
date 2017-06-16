@@ -10,7 +10,7 @@ class NewsAssembly {
     private var interactor: NewsInteractor!
     private var presenter: NewsPresenter!
     private var router: NewsRouter!
-    private var view: NewsView!
+    private var view: NewsViewController!
     
     private var moduleDisposeBag = DisposeBag()
     
@@ -19,9 +19,9 @@ class NewsAssembly {
         
         moduleDisposeBag = module.disposeBag
         
-        interactor = NewsInteractorImpl()
+        interactor = NewsInteractor()
         presenter = NewsPresenter()
-        router = NewsRouterImpl()
+        router = NewsRouter()
         view = UIStoryboard(name: "News", bundle: Bundle.main).instantiateInitialViewController() as! NewsViewController
         
         let moduleReference: [Any] = [module, interactor, presenter, router]
@@ -33,7 +33,7 @@ class NewsAssembly {
             })
             .disposed(by: moduleDisposeBag)
 
-        module.viewController = view as! UIViewController
+        module.viewController = view
         
         return module
     }

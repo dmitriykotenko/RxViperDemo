@@ -5,12 +5,15 @@
 import UIKit
 
 
-class NewsRouterImpl: NewsRouter {
+class NewsRouter {
     
-    func openDateModule(currentDate: Date) -> DateModule {        
+    func openDateModule(currentDate: Date) -> DateModule {
         let dateModule = DateAssembly().buildModule(date: currentDate)
         
-        currentViewController.present(dateModule.viewController, animated: true, completion: nil)
+        currentViewController.present(
+            dateModule.viewController,
+            animated: true,
+            completion: nil)
         
         return dateModule
     }
@@ -19,4 +22,3 @@ class NewsRouterImpl: NewsRouter {
         return UIApplication.shared.keyWindow!.rootViewController!
     }
 }
-
