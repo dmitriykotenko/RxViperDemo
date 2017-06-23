@@ -15,17 +15,17 @@ enum NewsState {
 class NewsPresenter {
     
     // Выходы.
-    private var dateVariable: Variable<Date> = Variable(Date())
+    private var dateVariable: BehaviorSubject<Date> = BehaviorSubject(value: Date())
     var date: Observable<Date> {
         return dateVariable.asObservable()
     }
     
-    private var newsStateVariable: Variable<NewsState> = Variable(.loading)
+    private var newsStateVariable: BehaviorSubject<NewsState> = BehaviorSubject(value: .loading)
     var newsState: Observable<NewsState> {
         return newsStateVariable.asObservable()
     }
     
-    private var loadNewsVariable: Variable<Date> = Variable(Date())
+    private var loadNewsVariable: BehaviorSubject<Date> = BehaviorSubject(value: Date())
     var loadNews: Observable<Date> {
         return loadNewsVariable.asObservable()
     }
@@ -34,19 +34,20 @@ class NewsPresenter {
     var selectDate: Observable<Date> {
         return selectDateSubject.asObservable()
     }
-    
-    // Входы.
-    var loadButtonTapped: PublishSubject<Void> = PublishSubject()
-    var selectDateButtonTapped: PublishSubject<Void> = PublishSubject()
-    var dateSelected: PublishSubject<Date> = PublishSubject()
-    var newsLoaded: PublishSubject<LoadingResult> = PublishSubject()
-    
+
     private var disposeBag = DisposeBag()
     
     init() {
+    }
+    
+    func setupBindings(loadButtonTapped: Observable<Void>,
+                       selectDateButtonTapped: Observable<Void>,
+                       dateSelected: Observable<Date>,
+                       newsLoaded: Observable<LoadingResult>) {
+        
         // Перезагружаем новости при нажатии на кнопку «Обновить».
         loadButtonTapped
-            .map { [unowned self] in self.dateVariable.value }
+            .flatMap { [unowned self] in self.dateVariable }
             .bind(to: loadNewsVariable)
             .disposed(by: disposeBag)
         
@@ -59,7 +60,7 @@ class NewsPresenter {
             .distinctUntilChanged()
             .bind(to: loadNewsVariable)
             .disposed(by: disposeBag)
-
+        
         loadNewsVariable.asObservable()
             .map { _ in return .loading }
             .bind(to: newsStateVariable)
@@ -69,10 +70,10 @@ class NewsPresenter {
             .map { [unowned self] in self.parseLoadingResult($0) }
             .bind(to: newsStateVariable)
             .disposed(by: disposeBag)
-
+        
         // Выбор даты.
         selectDateButtonTapped
-            .map { return self.dateVariable.value }
+            .flatMap { [unowned self] in self.dateVariable }
             .bind(to: selectDateSubject)
             .disposed(by: disposeBag)
     }

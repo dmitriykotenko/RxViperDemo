@@ -6,7 +6,7 @@ import RxSwift
 import RxCocoa
 
 
-class NewsViewController: UIViewController, NewsView {
+class NewsViewController: UIViewController {
     
     @IBOutlet
     private var titleLabel: UILabel!
@@ -27,27 +27,31 @@ class NewsViewController: UIViewController, NewsView {
         return readySubject.asSingle()
     }
     
-    var date: Variable<Date> = Variable(Date())
-    var newsState: Variable<NewsState> = Variable(.loading)
-    
+    var moduleAssembly: NewsAssembly!
     private var disposeBag = DisposeBag()
+    
+    var loadButtonTapped: Observable<Void> {
+        return reloadButton.rx.tap.asObservable()
+    }
+    
+    var selectDateButtonTapped: Observable<Void> {
+        return dateButton.rx.tap.asObservable()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupBindings()
         
         readySubject.on(.next())
         readySubject.on(.completed)
     }
     
-    func setupBindings() {
+    func setupBindings(date: Observable<Date>, newsState: Observable<NewsState>) {
         date.asObservable()
             .map { [unowned self] in self.formatDate($0) }
             .bind(to: dateButton.rx.title())
             .disposed(by: disposeBag)
         
-        newsState.asDriver()
+        newsState.asDriver(onErrorJustReturn: .loading)
             .drive(onNext: displayNewsState )
             .disposed(by: disposeBag)
     }
@@ -83,13 +87,5 @@ class NewsViewController: UIViewController, NewsView {
         dateFormatter.locale = Locale(identifier: "ru-RU")
         
         return dateFormatter.string(from: date)
-    }
-    
-    var loadButtonTapped: Observable<Void> {
-        return reloadButton.rx.tap.asObservable()
-    }
-    
-    var selectDateButtonTapped: Observable<Void> {
-        return dateButton.rx.tap.asObservable()
     }
 }

@@ -10,7 +10,7 @@ class NewsAssembly {
     private var interactor: NewsInteractor!
     private var presenter: NewsPresenter!
     private var router: NewsRouter!
-    private var view: NewsView!
+    private var view: NewsViewController!
     
     private var moduleDisposeBag = DisposeBag()
     
@@ -19,21 +19,22 @@ class NewsAssembly {
         
         moduleDisposeBag = module.disposeBag
         
-        interactor = NewsInteractorImpl()
+        interactor = NewsInteractor()
         presenter = NewsPresenter()
-        router = NewsRouterImpl()
+        router = NewsRouter()
         view = UIStoryboard(name: "News", bundle: Bundle.main).instantiateInitialViewController() as! NewsViewController
         
-        let moduleReference: [Any] = [module, interactor, presenter, router]
-        view.moduleReference = moduleReference
+//        let moduleReference: [Any] = [module, interactor, presenter, router]
+//        view.moduleReference = moduleReference
+        view.moduleAssembly = self
         
         view.ready
-            .subscribe(onSuccess: {
-                self.connectEverything()
+            .subscribe(onSuccess: { [weak self] in
+                self?.connectEverything()
             })
             .disposed(by: moduleDisposeBag)
 
-        module.viewController = view as! UIViewController
+        module.viewController = view
         presenter.date
             .bind(to: module.dateSubject)
             .disposed(by: moduleDisposeBag)
@@ -43,41 +44,18 @@ class NewsAssembly {
     
     func connectEverything() {
         // 1. Bind interactor to presenter.
-        presenter.loadNews
-            .bind(to: interactor.loadNews)
-            .disposed(by: moduleDisposeBag)
         
-        interactor.newsLoaded
-            .bind(to: presenter.newsLoaded)
-            .disposed(by: moduleDisposeBag)
+        view.setupBindings(date: presenter.date, newsState: presenter.newsState)
         
-        // 2. Bind presenter to view.
-        view.loadButtonTapped
-            .bind(to: presenter.loadButtonTapped)
-            .disposed(by: moduleDisposeBag)
+        router.setupBindings(dateSelectedObservable: presenter.selectDate)
         
-        view.selectDateButtonTapped
-            .bind(to: presenter.selectDateButtonTapped)
-            .disposed(by: moduleDisposeBag)
+        interactor.setupBindings(presenter.loadNews)
         
-        presenter.date
-            .bind(to: view.date)
-            .disposed(by: moduleDisposeBag)
+        presenter.setupBindings(loadButtonTapped: view.loadButtonTapped,
+                                selectDateButtonTapped: view.selectDateButtonTapped,
+                                dateSelected: router.selectedDate,
+                                newsLoaded: interactor.newsLoaded)
         
-        presenter.newsState
-            .bind(to: view.newsState)
-            .disposed(by: moduleDisposeBag)
         
-        // 3. Bind presenter to router.
-        presenter.selectDate
-            .flatMap( runDateModule )
-            .bind(to: presenter.dateSelected)
-            .disposed(by: moduleDisposeBag)
-    }
-    
-    private func runDateModule(_ currentDate: Date) -> Single<Date> {
-        let dateModule = router.openDateModule(currentDate: currentDate)
-        
-        return dateModule.dateSelected
     }
 }
